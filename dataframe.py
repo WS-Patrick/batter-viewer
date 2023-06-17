@@ -454,7 +454,7 @@ def dataframe(level, player_id):
         df['barrel'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 6 else None)
         df['plus_lsa4'] = df['launch_speed_angle'].apply(lambda x: 1 if x >=4 else None)
 
-        df['game_date'] = pd.to_datetime(df['game_date'])
+        df['game_date'] = pd.to_datetime(df['game_date'], format='%Y-%m-%d')
 
         condition1 = [
                     (df['zone'] == 1) & (df['swing'] != 1),
