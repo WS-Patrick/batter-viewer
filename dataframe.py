@@ -4,6 +4,8 @@ import pymysql
 
 db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz')
 
+db.ping()
+
 def dataframe(level, player_id):
   
     cursor = db.cursor()
