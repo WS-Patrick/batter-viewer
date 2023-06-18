@@ -738,11 +738,11 @@ def stats_df(merged_base_df):
     merged_base_df['slg'] = 0
     merged_base_df['ops'] = 0
   
-    if merged_base_df['ab'] != 0:
-      merged_base_df['avg'] = merged_base_df['hit'] / merged_base_df['ab']
-      merged_base_df['obp'] = (merged_base_df['hit'] + merged_base_df['hit_by_pitch'] + merged_base_df['walk']) / (merged_base_df['ab'] + merged_base_df['hit_by_pitch'] + merged_base_df['walk'] + merged_base_df['sac_fly'])
-      merged_base_df['slg'] = ((merged_base_df['single'] * 1) + (merged_base_df['double'] * 2) + (merged_base_df['triple'] * 3) + (merged_base_df['home_run'] * 4)) / merged_base_df['ab']
-      merged_base_df['ops'] = merged_base_df['obp'] + merged_base_df['slg']
+    # if merged_base_df['ab'] != 0:
+    merged_base_df['avg'] = merged_base_df['hit'] / merged_base_df['ab']
+    merged_base_df['obp'] = (merged_base_df['hit'] + merged_base_df['hit_by_pitch'] + merged_base_df['walk']) / (merged_base_df['ab'] + merged_base_df['hit_by_pitch'] + merged_base_df['walk'] + merged_base_df['sac_fly'])
+    merged_base_df['slg'] = ((merged_base_df['single'] * 1) + (merged_base_df['double'] * 2) + (merged_base_df['triple'] * 3) + (merged_base_df['home_run'] * 4)) / merged_base_df['ab']
+    merged_base_df['ops'] = merged_base_df['obp'] + merged_base_df['slg']
 
     merged_base_df['z%'] = merged_base_df['z_in'] / merged_base_df['player_name']
     merged_base_df['z_swing%'] = merged_base_df['z_swing'] / merged_base_df['z_in']
