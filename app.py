@@ -87,108 +87,108 @@ if option != "-":
     st.subheader(':gray[스윙경향성]')
     st.dataframe(swing_viewer_df, width=1300)
 
-#----------------------------------------------------------------------------------
+# #----------------------------------------------------------------------------------
 
-    season_events_df = seoson_inplay_events(player_df)
-    period_events_df = period_inplay_events(player_df)
-    events_df = pd.concat([period_events_df, season_events_df])
-    events_df = events_df.set_index('game_year')
+#     season_events_df = seoson_inplay_events(player_df)
+#     period_events_df = period_inplay_events(player_df)
+#     events_df = pd.concat([period_events_df, season_events_df])
+#     events_df = events_df.set_index('game_year')
 
-    event_viewer_df = event_viewer(events_df)
+#     event_viewer_df = event_viewer(events_df)
 
-    st.title('[시즌별 :red[인플레이 현황]]')
-    st.dataframe(event_viewer_df, width=700, column_config=None)
+#     st.title('[시즌별 :red[인플레이 현황]]')
+#     st.dataframe(event_viewer_df, width=700, column_config=None)
 
-#----------------------------------------------------------------------------------
+# #----------------------------------------------------------------------------------
 
-    season_pthrows_df = season_pthrows(player_df)
-    period_pthrows_df = period_pthrows(player_df)
-    pthrows_df = pd.concat([period_pthrows_df, season_pthrows_df])
+#     season_pthrows_df = season_pthrows(player_df)
+#     period_pthrows_df = period_pthrows(player_df)
+#     pthrows_df = pd.concat([period_pthrows_df, season_pthrows_df])
 
-    pthrows_df = pthrows_df.set_index('game_year')
-    pthrows_stats_df = stats_viewer_pthrows(pthrows_df)
-    pthrows_swing_df = swing_viewer_pthrows(pthrows_df)
+#     pthrows_df = pthrows_df.set_index('game_year')
+#     pthrows_stats_df = stats_viewer_pthrows(pthrows_df)
+#     pthrows_swing_df = swing_viewer_pthrows(pthrows_df)
 
-    st.title('[시즌 :red[투수유형별] 현황]')
-    st.subheader(':gray[기록 & 타구]')
-    st.dataframe(pthrows_stats_df, width=1300)
+#     st.title('[시즌 :red[투수유형별] 현황]')
+#     st.subheader(':gray[기록 & 타구]')
+#     st.dataframe(pthrows_stats_df, width=1300)
 
-    st.subheader(':gray[스윙경향성]')
-    st.dataframe(pthrows_swing_df, width=1300)
+#     st.subheader(':gray[스윙경향성]')
+#     st.dataframe(pthrows_swing_df, width=1300)
 
-# -----------------------------------------------------------------------------------
+# # -----------------------------------------------------------------------------------
 
-    season_pkind_df = season_pkind(player_df)
-    period_pkind_df = period_pkind(player_df)
-    pkind_df = pd.concat([period_pkind_df, season_pkind_df])
-    pkind_df = pkind_df.set_index('game_year')
+#     season_pkind_df = season_pkind(player_df)
+#     period_pkind_df = period_pkind(player_df)
+#     pkind_df = pd.concat([period_pkind_df, season_pkind_df])
+#     pkind_df = pkind_df.set_index('game_year')
 
-    pkind_stats_df = stats_viewer_pkind(pkind_df)
-    pkind_swing_df = swing_viewer_pkind(pkind_df)
+#     pkind_stats_df = stats_viewer_pkind(pkind_df)
+#     pkind_swing_df = swing_viewer_pkind(pkind_df)
 
-    st.title('[시즌 :red[구종유형별] 현황]')
-    st.subheader(':gray[기록 & 타구]')
-    st.dataframe(pkind_stats_df, width=1300)
+#     st.title('[시즌 :red[구종유형별] 현황]')
+#     st.subheader(':gray[기록 & 타구]')
+#     st.dataframe(pkind_stats_df, width=1300)
 
-    st.subheader(':gray[스윙경향성]')
-    st.dataframe(pkind_swing_df, width=1300)
+#     st.subheader(':gray[스윙경향성]')
+#     st.dataframe(pkind_swing_df, width=1300)
 
-#-----------------------------------------------------------------------------------
+# #-----------------------------------------------------------------------------------
 
-    season_pitchname_df = season_pitchname(player_df)
-    period_pitchname_df = period_pitchname(player_df)
-    pitchname_df = pd.concat([period_pitchname_df, season_pitchname_df])
-    pitchname_df = pitchname_df.set_index('game_year')
+#     season_pitchname_df = season_pitchname(player_df)
+#     period_pitchname_df = period_pitchname(player_df)
+#     pitchname_df = pd.concat([period_pitchname_df, season_pitchname_df])
+#     pitchname_df = pitchname_df.set_index('game_year')
 
-    pitchname_stats_df = stats_viewer_pitchname(pitchname_df)
-    pitchname_swing_df = swing_viewer_pitchname(pitchname_df)
+#     pitchname_stats_df = stats_viewer_pitchname(pitchname_df)
+#     pitchname_swing_df = swing_viewer_pitchname(pitchname_df)
 
-    st.title('[시즌 :red[세부구종별] 현황]')
-    st.subheader(':gray[기록 & 타구]')
-    st.dataframe(pitchname_stats_df, width=1300)
+#     st.title('[시즌 :red[세부구종별] 현황]')
+#     st.subheader(':gray[기록 & 타구]')
+#     st.dataframe(pitchname_stats_df, width=1300)
 
-    st.subheader(':gray[스윙경향성]')
-    st.dataframe(pitchname_swing_df, width=1300)
+#     st.subheader(':gray[스윙경향성]')
+#     st.dataframe(pitchname_swing_df, width=1300)
 
-#-----------------------------------------------------------------------------------
+# #-----------------------------------------------------------------------------------
 
-    st.title('시즌별 :red[투구지점]')
-    pitched_factor = 'player_name'
-    selection1 = st.selectbox('구종유형 선택(투구)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+#     st.title('시즌별 :red[투구지점]')
+#     pitched_factor = 'player_name'
+#     selection1 = st.selectbox('구종유형 선택(투구)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-    select_count_option(player_df, pitched_factor, selection1)
+#     select_count_option(player_df, pitched_factor, selection1)
 
-#-----------------------------------------------------------------------------------
+# #-----------------------------------------------------------------------------------
 
-    st.title('시즌별 :red[스윙지점]')
-    swing_factor = 'swing'
-    selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+#     st.title('시즌별 :red[스윙지점]')
+#     swing_factor = 'swing'
+#     selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-    select_sum_option(player_df, swing_factor, selection2)
+#     select_sum_option(player_df, swing_factor, selection2)
 
 
-#-----------------------------------------------------------------------------------
+# #-----------------------------------------------------------------------------------
 
-    st.title('시즌별 :red[LSA 4+]')
-    # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
-    lsa_factor = 'launch_speed_angle'
-    selection3 = st.selectbox('구종유형 선택(LSA 4+)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+#     st.title('시즌별 :red[LSA 4+]')
+#     # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
+#     lsa_factor = 'launch_speed_angle'
+#     selection3 = st.selectbox('구종유형 선택(LSA 4+)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-    select_sum_option(player_df, lsa_factor, selection3)
-    select_sum_plate_option(player_df, lsa_factor, selection3)
+#     select_sum_option(player_df, lsa_factor, selection3)
+#     select_sum_plate_option(player_df, lsa_factor, selection3)
 
-#------------------------------------------------------------------------------------
+# #------------------------------------------------------------------------------------
 
-    st.title('시즌별 :red[Swing Map]')
-    swingmap_factor = 'player_name'
-    swingmap_dataframe = swingmap_df(player_df)
-    selection4 = st.selectbox('구종유형 선택(SWING MAP)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+#     st.title('시즌별 :red[Swing Map]')
+#     swingmap_factor = 'player_name'
+#     swingmap_dataframe = swingmap_df(player_df)
+#     selection4 = st.selectbox('구종유형 선택(SWING MAP)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-    swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
+#     swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
 
-#-------------------------------------------------------------------------------------
+# #-------------------------------------------------------------------------------------
 
-    st.title('시즌별 :red[Spray Chart]')
-    spraychart_dataframe = spraychart_df(player_df)
+#     st.title('시즌별 :red[Spray Chart]')
+#     spraychart_dataframe = spraychart_df(player_df)
 
-    spraychart_fig = season_spraychart(spraychart_dataframe)
+#     spraychart_fig = season_spraychart(spraychart_dataframe)
