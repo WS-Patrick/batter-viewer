@@ -87,19 +87,19 @@ if option != "-":
     st.subheader(':gray[스윙경향성]')
     st.dataframe(swing_viewer_df, width=1300)
 
-# #----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
 
-#     season_events_df = seoson_inplay_events(player_df)
-#     period_events_df = period_inplay_events(player_df)
-#     events_df = pd.concat([period_events_df, season_events_df])
-#     events_df = events_df.set_index('game_year')
+    season_events_df = seoson_inplay_events(player_df)
+    period_events_df = period_inplay_events(player_df)
+    events_df = pd.concat([period_events_df, season_events_df])
+    events_df = events_df.set_index('game_year')
 
-#     event_viewer_df = event_viewer(events_df)
+    event_viewer_df = event_viewer(events_df)
 
-#     st.title('[시즌별 :red[인플레이 현황]]')
-#     st.dataframe(event_viewer_df, width=700, column_config=None)
+    st.title('[시즌별 :red[인플레이 현황]]')
+    st.dataframe(event_viewer_df, width=700, column_config=None)
 
-# #----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
 
 #     season_pthrows_df = season_pthrows(player_df)
 #     period_pthrows_df = period_pthrows(player_df)
