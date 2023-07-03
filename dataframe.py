@@ -1,14 +1,28 @@
 import pandas as pd
 import numpy as np
 import pymysql
+from pymysqlpool import ConnectionPool
 
-db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz')
+pool = ConnectionPool(
+    host=''14.49.30.59'',
+    port=33067,
+    user='ktwiz',
+    password='ktwiz1234!#',
+    database='ktwiz',
+    autocommit=True,  # 필요에 따라 설정
+    charset='utf8mb4'  # 필요에 따라 설정
+)
 
-db.ping()
+connection = pool.get_connection()
+
+
+# db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz')
+
+# db.ping()
 
 def dataframe(level, player_id):
   
-    cursor = db.cursor()
+    cursor = connection.cursor()
     sql = """SELECT
 
     -- game id
