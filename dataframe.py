@@ -9,8 +9,8 @@ pool = ConnectionPool(
     user='ktwiz',
     password='ktwiz1234!#',
     database='ktwiz',
-    autocommit=True,  # 필요에 따라 설정
-    charset='utf8mb4'  # 필요에 따라 설정
+    # autocommit=True,  # 필요에 따라 설정
+    # charset='utf8mb4'  # 필요에 따라 설정
 )
 
 connection = pool.get_connection()
