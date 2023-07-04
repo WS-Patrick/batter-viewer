@@ -4,7 +4,7 @@ import pymysql
 from pymysqlpool import ConnectionPool
 
 pool = ConnectionPool(
-    host=''14.49.30.59'',
+    host='14.49.30.59',
     port=33067,
     user='ktwiz',
     password='ktwiz1234!#',
