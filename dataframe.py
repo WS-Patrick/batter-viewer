@@ -16,7 +16,7 @@ import pymysql
 # connection = pool.get_connection()
 
 
-db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz')
+db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8')
 
 db.ping()
 
