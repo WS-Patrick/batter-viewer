@@ -60,34 +60,34 @@ sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">
 st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
 
-# if option != "-":
-#     league = select_league(option)
+if option != "-":
+    league = select_league(option)
 
-# #------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
     
-#     # if st.sidebar.button('실행'):
+    # if st.sidebar.button('실행'):
   
-#     id = int(id)
-#     player_df = dataframe(league, id)
+    id = int(id)
+    player_df = dataframe(league, id)
 
-# #----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
 
-#     season_stats_df = stats(player_df)
-#     period_stats_df = period_stats(player_df)
+    season_stats_df = stats(player_df)
+    period_stats_df = period_stats(player_df)
 
-#     stats_df = pd.concat([period_stats_df, season_stats_df])
+    stats_df = pd.concat([period_stats_df, season_stats_df])
 
-#     stats_viewer_df = stats_viewer(stats_df)
-#     swing_viewer_df = swing_viewer(stats_df)
+    stats_viewer_df = stats_viewer(stats_df)
+    swing_viewer_df = swing_viewer(stats_df)
 
-#     st.title('[시즌별 :red[주요현황]]')
-#     st.subheader(':gray[기록 & 타구]')
-#     st.dataframe(stats_viewer_df, width=1300)
+    st.title('[시즌별 :red[주요현황]]')
+    st.subheader(':gray[기록 & 타구]')
+    st.dataframe(stats_viewer_df, width=1300)
 
-#     st.subheader(':gray[스윙경향성]')
-#     st.dataframe(swing_viewer_df, width=1300)
+    st.subheader(':gray[스윙경향성]')
+    st.dataframe(swing_viewer_df, width=1300)
 
-# #----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
 
 #     season_events_df = seoson_inplay_events(player_df)
 #     period_events_df = period_inplay_events(player_df)
