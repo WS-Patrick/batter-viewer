@@ -168,35 +168,35 @@ if option != "-":
 
 #-----------------------------------------------------------------------------------
 
-#     st.title('시즌별 :red[스윙지점]')
-#     swing_factor = 'swing'
-#     selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+    st.title('시즌별 :red[스윙지점]')
+    swing_factor = 'swing'
+    selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-#     select_sum_option(player_df, swing_factor, selection2)
+    select_sum_option(player_df, swing_factor, selection2)
 
 
-# #-----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 
-#     st.title('시즌별 :red[LSA 4+]')
-#     # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
-#     lsa_factor = 'launch_speed_angle'
-#     selection3 = st.selectbox('구종유형 선택(LSA 4+)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+    st.title('시즌별 :red[LSA 4+]')
+    # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
+    lsa_factor = 'launch_speed_angle'
+    selection3 = st.selectbox('구종유형 선택(LSA 4+)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-#     select_sum_option(player_df, lsa_factor, selection3)
-#     select_sum_plate_option(player_df, lsa_factor, selection3)
+    select_sum_option(player_df, lsa_factor, selection3)
+    select_sum_plate_option(player_df, lsa_factor, selection3)
 
-# #------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
 
-#     st.title('시즌별 :red[Swing Map]')
-#     swingmap_factor = 'player_name'
-#     swingmap_dataframe = swingmap_df(player_df)
-#     selection4 = st.selectbox('구종유형 선택(SWING MAP)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+    st.title('시즌별 :red[Swing Map]')
+    swingmap_factor = 'player_name'
+    swingmap_dataframe = swingmap_df(player_df)
+    selection4 = st.selectbox('구종유형 선택(SWING MAP)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-#     swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
+    swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
 
-# #-------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------
 
-#     st.title('시즌별 :red[Spray Chart]')
-#     spraychart_dataframe = spraychart_df(player_df)
+    st.title('시즌별 :red[Spray Chart]')
+    spraychart_dataframe = spraychart_df(player_df)
 
-#     spraychart_fig = season_spraychart(spraychart_dataframe)
+    spraychart_fig = season_spraychart(spraychart_dataframe)
