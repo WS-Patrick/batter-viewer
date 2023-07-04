@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pymysql
-import psycopg2
+
 # from pymysqlpool import ConnectionPool
 
 # pool = ConnectionPool(
@@ -17,20 +17,13 @@ import psycopg2
 
 # connection = pool.get_connection()
 
-@st.experimental_singleton
-def init_connection():
-  return psycopg2.connect(**st.secrets["postgres"])
+db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
 
-conn = init_connection()
-
-
-# db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
-
-# db.ping()
+db.ping()
 
 def dataframe(level, player_id):
   
-    cursor = conn.cursor()
+    cursor = db.cursor()
     sql = """SELECT
 
     -- game id
@@ -331,7 +324,7 @@ def dataframe(level, player_id):
                                     'launch_speed','launch_angle','release_spin_rate','release_extension',
                                     'launch_speed_angle','pitch_number','PAofinning','pitch_name','home_score','away_score','level','verrelangle','launch_direction', 'contactX' , 'contactY' , 'contactZ', 'groundX','groundY','game_year','hit_spin_rate', 'catcher'])
     
-    conn.close()
+    db.close()
   
     if len(df) > 0:
 
