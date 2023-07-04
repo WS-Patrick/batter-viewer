@@ -361,16 +361,16 @@ def dataframe(level, player_id):
         whiff = ['swinging_strike','swing_strike_blocked']
         foul = ['foul','foul_tip']
 
-        df['pa'] = df['events'].apply(lambda x: 1 if x in pa else None)
-        df['ab'] = df['events'].apply(lambda x: 1 if x in ab else None)
-        df['hit'] = df['events'].apply(lambda x: 1 if x in hit else None)
-        df['swing'] = df['description'].apply(lambda x: 1 if x in swing else None)
-        df['con'] = df['description'].apply(lambda x: 1 if x in con else None)
-        df['whiff'] = df['description'].apply(lambda x: 1 if x in whiff else None)
-        df['foul'] = df['description'].apply(lambda x: 1 if x in foul else None)
+        df['pa'] = df['events'].apply(lambda x: 1 if x in pa else 0)
+        df['ab'] = df['events'].apply(lambda x: 1 if x in ab else 0)
+        df['hit'] = df['events'].apply(lambda x: 1 if x in hit else 0)
+        df['swing'] = df['description'].apply(lambda x: 1 if x in swing else 0)
+        df['con'] = df['description'].apply(lambda x: 1 if x in con else 0)
+        df['whiff'] = df['description'].apply(lambda x: 1 if x in whiff else 0)
+        df['foul'] = df['description'].apply(lambda x: 1 if x in foul else 0)
 
-        df['z_in'] = df['zone'].apply(lambda x: 1 if x < 10 else None)
-        df['z_out'] = df['zone'].apply(lambda x: 1 if x > 10 else None)
+        df['z_in'] = df['zone'].apply(lambda x: 1 if x < 10 else 0)
+        df['z_out'] = df['zone'].apply(lambda x: 1 if x > 10 else 0)
 
         df['balls'] = df['balls'].apply(str)
         df['strikes'] = df['strikes'].apply(str)
@@ -446,34 +446,34 @@ def dataframe(level, player_id):
 
         df['count_value'] = df['count'].apply(lambda x: count(x))
 
-        df['after_2s'] = df['count_value'].apply(lambda x: 1 if x == 'After_2S' else None)
-        df['hitting'] = df['count_value'].apply(lambda x: 1 if x == 'Hitting' else None)
-        df['else'] = df['count_value'].apply(lambda x: 1 if x == 'Else' else None)
+        df['after_2s'] = df['count_value'].apply(lambda x: 1 if x == 'After_2S' else 0)
+        df['hitting'] = df['count_value'].apply(lambda x: 1 if x == 'Hitting' else )
+        df['else'] = df['count_value'].apply(lambda x: 1 if x == 'Else' else 0)
 
-        df['ld'] = df['bb_type'].apply(lambda x: 1 if x == 'Line_Drive' else None)
-        df['fb'] = df['bb_type'].apply(lambda x: 1 if x == 'Fly_Ball' else None)
-        df['gb'] = df['bb_type'].apply(lambda x: 1 if x == 'Ground_Ball' else None)
-        df['pu'] = df['bb_type'].apply(lambda x: 1 if x == 'Popup' else None)
+        df['ld'] = df['bb_type'].apply(lambda x: 1 if x == 'Line_Drive' else 0)
+        df['fb'] = df['bb_type'].apply(lambda x: 1 if x == 'Fly_Ball' else 0)
+        df['gb'] = df['bb_type'].apply(lambda x: 1 if x == 'Ground_Ball' else 0)
+        df['pu'] = df['bb_type'].apply(lambda x: 1 if x == 'Popup' else 0)
 
-        df['single'] = df['events'].apply(lambda x: 1 if x == 'single' else None)
-        df['double'] = df['events'].apply(lambda x: 1 if x == 'double' else None)
-        df['triple'] = df['events'].apply(lambda x: 1 if x == 'triple' else None)
-        df['home_run'] = df['events'].apply(lambda x: 1 if x == 'home_run' else None)
-        df['walk'] = df['events'].apply(lambda x: 1 if x == 'walk' else None)
-        df['hit_by_pitch'] = df['events'].apply(lambda x: 1 if x == 'hit_by_pitch' else None)
-        df['sac_fly'] = df['events'].apply(lambda x: 1 if x == 'sac_fly' else None)
-        df['sac_bunt'] = df['events'].apply(lambda x: 1 if x == 'sac_bunt' else None)
-        df['field_out'] = df['events'].apply(lambda x: 1 if x == 'field_out' else None)
+        df['single'] = df['events'].apply(lambda x: 1 if x == 'single' else 0)
+        df['double'] = df['events'].apply(lambda x: 1 if x == 'double' else 0)
+        df['triple'] = df['events'].apply(lambda x: 1 if x == 'triple' else 0)
+        df['home_run'] = df['events'].apply(lambda x: 1 if x == 'home_run' else 0)
+        df['walk'] = df['events'].apply(lambda x: 1 if x == 'walk' else 0)
+        df['hit_by_pitch'] = df['events'].apply(lambda x: 1 if x == 'hit_by_pitch' else 0)
+        df['sac_fly'] = df['events'].apply(lambda x: 1 if x == 'sac_fly' else 0)
+        df['sac_bunt'] = df['events'].apply(lambda x: 1 if x == 'sac_bunt' else 0)
+        df['field_out'] = df['events'].apply(lambda x: 1 if x == 'field_out' else 0)
 
-        df['inplay'] = df['type'].apply(lambda x: 1 if x == 'X' else None)
+        df['inplay'] = df['type'].apply(lambda x: 1 if x == 'X' else 0)
 
-        df['weak'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 1 else None)
-        df['topped'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 2 else None)
-        df['under'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 3 else None)
-        df['flare'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 4 else None)
-        df['solid_contact'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 5 else None)
-        df['barrel'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 6 else None)
-        df['plus_lsa4'] = df['launch_speed_angle'].apply(lambda x: 1 if x >=4 else None)
+        df['weak'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 1 else 0)
+        df['topped'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 2 else 0)
+        df['under'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 3 else 0)
+        df['flare'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 4 else 0)
+        df['solid_contact'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 5 else 0)
+        df['barrel'] = df['launch_speed_angle'].apply(lambda x: 1 if x == 6 else 0)
+        df['plus_lsa4'] = df['launch_speed_angle'].apply(lambda x: 1 if x >=4 else 0)
 
         df['game_date'] = pd.to_datetime(df['game_date'], format='mixed', dayfirst=True)
 
@@ -503,10 +503,10 @@ def dataframe(level, player_id):
 
         df['h_l'] = np.select(condition2, choicelist2, default='Not Specified')
 
-        df['z_left'] = df['zone'].apply(lambda x: 1 if x == 1 or x == 4 or x== 7 else None)
-        df['z_right'] = df['zone'].apply(lambda x: 1 if x == 3 or x == 6 or x== 9 else None)
-        df['z_high'] = df['zone'].apply(lambda x: 1 if x == 1 or x == 2 or x== 3 else None)
-        df['z_low'] = df['zone'].apply(lambda x: 1 if x == 7 or x == 8 or x== 9 else None)
+        df['z_left'] = df['zone'].apply(lambda x: 1 if x == 1 or x == 4 or x== 7 else 0)
+        df['z_right'] = df['zone'].apply(lambda x: 1 if x == 3 or x == 6 or x== 9 else 0)
+        df['z_high'] = df['zone'].apply(lambda x: 1 if x == 1 or x == 2 or x== 3 else 0)
+        df['z_low'] = df['zone'].apply(lambda x: 1 if x == 7 or x == 8 or x== 9 else 0)
 
         condition3 = [
                     (df['plate_x'] < -0.12) & (df['plate_x'] > -0.34) & (df['plate_z'] > 0.91) & (df['plate_z'] < 1.16),
@@ -558,25 +558,25 @@ def dataframe(level, player_id):
         ndf['ntype'] = ndf['description'].apply(lambda x: ntype(x))
 
         z_df = ndf[ndf['zone'] < 10]
-        z_df['z_swing'] = z_df['swing'].apply(lambda x: 1 if x == 1 else None)
-        z_df['z_con'] = z_df['con'].apply(lambda x: 1 if x == 1 else None)
-        z_df['z_inplay'] = z_df['inplay'].apply(lambda x: 1 if x == 1 else None)
+        z_df['z_swing'] = z_df['swing'].apply(lambda x: 1 if x == 1 else 0)
+        z_df['z_con'] = z_df['con'].apply(lambda x: 1 if x == 1 else 0)
+        z_df['z_inplay'] = z_df['inplay'].apply(lambda x: 1 if x == 1 else 0)
 
         z_swing = z_df[['z_swing']]
         z_con = z_df[['z_con']]
         z_inplay = z_df[['z_inplay']]
 
         o_df = ndf[ndf['zone'] > 10]
-        o_df['o_swing'] = o_df['swing'].apply(lambda x: 1 if x == 1 else None)
-        o_df['o_con'] = o_df['con'].apply(lambda x: 1 if x == 1 else None)
-        o_df['o_inplay'] = o_df['inplay'].apply(lambda x: 1 if x == 1 else None)
+        o_df['o_swing'] = o_df['swing'].apply(lambda x: 1 if x == 1 else 0)
+        o_df['o_con'] = o_df['con'].apply(lambda x: 1 if x == 1 else 0)
+        o_df['o_inplay'] = o_df['inplay'].apply(lambda x: 1 if x == 1 else 0)
 
         o_swing = o_df[['o_swing']]
         o_con = o_df[['o_con']]
         o_inplay = o_df[['o_inplay']]
 
         f_pitch = ndf[ndf['count'] == '0-0']
-        f_pitch['f_swing'] = f_pitch['swing'].apply(lambda x: 1 if x == 1 else None)
+        f_pitch['f_swing'] = f_pitch['swing'].apply(lambda x: 1 if x == 1 else 0)
         f_swing = f_pitch[['f_swing']]
 
         inplay_df = ndf[ndf['type'] == 'X']
@@ -584,7 +584,7 @@ def dataframe(level, player_id):
         inplay_df.columns = ['exit_velocity','launch_angleX']
 
         whiff = ndf[ndf['whiff'] == 1]
-        whiff['z_str_swing'] = whiff['zone'].apply(lambda x: 1 if x < 10 else None)
+        whiff['z_str_swing'] = whiff['zone'].apply(lambda x: 1 if x < 10 else 0)
         z_ztr_swing = whiff[['z_str_swing']]
 
         ndf = ndf.join(z_swing, how='outer')
@@ -597,14 +597,14 @@ def dataframe(level, player_id):
         ndf = ndf.join(z_inplay, how='outer')
         ndf = ndf.join(o_inplay, how='outer')
 
-        ndf['f_pitch'] = ndf['count'].apply(lambda x: 1 if x == '0-0' else None)
+        ndf['f_pitch'] = ndf['count'].apply(lambda x: 1 if x == '0-0' else 0)
 
-        ndf['Left_take'] = ndf['l_r'].apply(lambda x: 1 if x == 'Left_take' else None)
-        ndf['Right_take'] = ndf['l_r'].apply(lambda x: 1 if x == 'Right_take' else None)
-        ndf['High_take'] = ndf['h_l'].apply(lambda x: 1 if x == 'High_take' else None)
-        ndf['Low_take'] = ndf['h_l'].apply(lambda x: 1 if x == 'Low_take' else None)
+        ndf['Left_take'] = ndf['l_r'].apply(lambda x: 1 if x == 'Left_take' else 0)
+        ndf['Right_take'] = ndf['l_r'].apply(lambda x: 1 if x == 'Right_take' else 0)
+        ndf['High_take'] = ndf['h_l'].apply(lambda x: 1 if x == 'High_take' else 0)
+        ndf['Low_take'] = ndf['h_l'].apply(lambda x: 1 if x == 'Low_take' else 0)
 
-        ndf['looking'] = ndf['description'].apply(lambda x: 1 if x == "ball" or x == "called_strike" else None)
+        ndf['looking'] = ndf['description'].apply(lambda x: 1 if x == "ball" or x == "called_strike" else 0)
 
         ot = ndf[ndf['p_kind'] == 'OT'].index
         ndf = ndf.drop(ot)
