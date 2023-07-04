@@ -2,4 +2,4 @@ pymysql
 plotly
 pandas
 pymysqlpool
-streamlit
+streamlit == 1.24.0
