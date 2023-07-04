@@ -1,3 +1,4 @@
 pymysql
 plotly
 pandas
+psycopg2
