@@ -4,6 +4,14 @@ from definition import select_league, stats, period_stats, seoson_inplay_events,
 from definition import season_pkind, period_pkind, season_pitchname, period_pitchname, stats_viewer, swing_viewer, event_viewer, stats_viewer_pthrows, swing_viewer_pthrows, swingmap_df, spraychart_df
 from dataframe import dataframe
 from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart
+import pymysql
+
+db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8')
+
+db.ping()
+
+db.close()
+
 
 st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
 st.markdown(
