@@ -447,7 +447,7 @@ def dataframe(level, player_id):
         df['count_value'] = df['count'].apply(lambda x: count(x))
 
         df['after_2s'] = df['count_value'].apply(lambda x: 1 if x == 'After_2S' else 0)
-        df['hitting'] = df['count_value'].apply(lambda x: 1 if x == 'Hitting' else )
+        df['hitting'] = df['count_value'].apply(lambda x: 1 if x == 'Hitting' else 0)
         df['else'] = df['count_value'].apply(lambda x: 1 if x == 'Else' else 0)
 
         df['ld'] = df['bb_type'].apply(lambda x: 1 if x == 'Line_Drive' else 0)
