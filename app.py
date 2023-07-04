@@ -118,47 +118,47 @@ if option != "-":
 
 # -----------------------------------------------------------------------------------
 
-#     season_pkind_df = season_pkind(player_df)
-#     period_pkind_df = period_pkind(player_df)
-#     pkind_df = pd.concat([period_pkind_df, season_pkind_df])
-#     pkind_df = pkind_df.set_index('game_year')
+    season_pkind_df = season_pkind(player_df)
+    period_pkind_df = period_pkind(player_df)
+    pkind_df = pd.concat([period_pkind_df, season_pkind_df])
+    pkind_df = pkind_df.set_index('game_year')
 
-#     pkind_stats_df = stats_viewer_pkind(pkind_df)
-#     pkind_swing_df = swing_viewer_pkind(pkind_df)
+    pkind_stats_df = stats_viewer_pkind(pkind_df)
+    pkind_swing_df = swing_viewer_pkind(pkind_df)
 
-#     st.title('[시즌 :red[구종유형별] 현황]')
-#     st.subheader(':gray[기록 & 타구]')
-#     st.dataframe(pkind_stats_df, width=1300)
+    st.title('[시즌 :red[구종유형별] 현황]')
+    st.subheader(':gray[기록 & 타구]')
+    st.dataframe(pkind_stats_df, width=1300)
 
-#     st.subheader(':gray[스윙경향성]')
-#     st.dataframe(pkind_swing_df, width=1300)
+    st.subheader(':gray[스윙경향성]')
+    st.dataframe(pkind_swing_df, width=1300)
 
-# #-----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 
-#     season_pitchname_df = season_pitchname(player_df)
-#     period_pitchname_df = period_pitchname(player_df)
-#     pitchname_df = pd.concat([period_pitchname_df, season_pitchname_df])
-#     pitchname_df = pitchname_df.set_index('game_year')
+    season_pitchname_df = season_pitchname(player_df)
+    period_pitchname_df = period_pitchname(player_df)
+    pitchname_df = pd.concat([period_pitchname_df, season_pitchname_df])
+    pitchname_df = pitchname_df.set_index('game_year')
 
-#     pitchname_stats_df = stats_viewer_pitchname(pitchname_df)
-#     pitchname_swing_df = swing_viewer_pitchname(pitchname_df)
+    pitchname_stats_df = stats_viewer_pitchname(pitchname_df)
+    pitchname_swing_df = swing_viewer_pitchname(pitchname_df)
 
-#     st.title('[시즌 :red[세부구종별] 현황]')
-#     st.subheader(':gray[기록 & 타구]')
-#     st.dataframe(pitchname_stats_df, width=1300)
+    st.title('[시즌 :red[세부구종별] 현황]')
+    st.subheader(':gray[기록 & 타구]')
+    st.dataframe(pitchname_stats_df, width=1300)
 
-#     st.subheader(':gray[스윙경향성]')
-#     st.dataframe(pitchname_swing_df, width=1300)
+    st.subheader(':gray[스윙경향성]')
+    st.dataframe(pitchname_swing_df, width=1300)
 
-# #-----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 
-#     st.title('시즌별 :red[투구지점]')
-#     pitched_factor = 'player_name'
-#     selection1 = st.selectbox('구종유형 선택(투구)',('Season', 'Fastball', 'Breaking','Off-Speed'))
+    st.title('시즌별 :red[투구지점]')
+    pitched_factor = 'player_name'
+    selection1 = st.selectbox('구종유형 선택(투구)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-#     select_count_option(player_df, pitched_factor, selection1)
+    select_count_option(player_df, pitched_factor, selection1)
 
-# #-----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 
 #     st.title('시즌별 :red[스윙지점]')
 #     swing_factor = 'swing'
