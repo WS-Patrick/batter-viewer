@@ -7,7 +7,6 @@ from map import select_count_option, select_sum_option, select_sum_plate_option,
 
 from PIL import Image
 from user import login
-import pyautogui
 
 st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTER'S ANALYTICS] PAGE")
@@ -127,9 +126,6 @@ def show_main_page():
         #     # i.e. clear values from both square and cube
         #     st.cache_data.clear()
         #     show_login_page()
-
-        if st.sidebar.button("RESET PAGE"):
-            pyautogui.hotkey("F5")
 
         if option != "-":
             league = select_league(option)
