@@ -47,11 +47,12 @@ def show_login_page():
         # Clear values from *all* memoized functions:
         # i.e. clear values from both square and cube
         st.cache_data.clear()
-    with loginSection:
-        if st.session_state['loggedIn'] == False:
-            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
-            password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
-            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
+        
+        with loginSection:
+            if st.session_state['loggedIn'] == False:
+                userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
+                password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
+                st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
 
 def show_main_page():
     with mainSection:
