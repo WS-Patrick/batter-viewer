@@ -6,6 +6,8 @@ from dataframe import dataframe
 from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart
 import pymysql
 
+
+
 st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
 st.markdown(
     """
@@ -59,6 +61,19 @@ option = st.sidebar.selectbox(
 
 sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
 st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
+
+@st.experimental_memo
+def square(x):
+    return x**2
+
+@st.experimental_memo
+def cube(x):
+    return x**3
+
+if st.button("Clear All"):
+    # Clear values from *all* memoized functions:
+    # i.e. clear values from both square and cube
+    st.experimental_memo.clear()
 
 
 if option != "-":
