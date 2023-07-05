@@ -8,17 +8,14 @@ from map import select_count_option, select_sum_option, select_sum_plate_option,
 from PIL import Image
 from user import login
 
-st.markdown(""" <style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center; display: block; margin-left: auto; margin-right: auto; width: 25%;}</style>""", unsafe_allow_html=True)
-with st.image("ktwiz_emblem.png")
+# st.markdown(""" <style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center; display: block; margin-left: auto; margin-right: auto; width: 25%;}</style>""", unsafe_allow_html=True)
+# with st.image("ktwiz_emblem.png")
 
 st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTER'S ANALYTICS] PAGE")
-main_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
-st.markdown(main_text, unsafe_allow_html=True)
+# main_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
+# st.markdown(main_text, unsafe_allow_html=True)
 # st.image("ktwiz_emblem.png")
-
-
-
 
 headerSection = st.container()
 mainSection = st.container()
@@ -27,13 +24,11 @@ logOutSection = st.container()
 
 def LoggedOut_Clicked():
     st.session_state['loggedIn'] = False
-    
-
+  
 def show_logout_page():
     loginSection.empty();
     with logOutSection:
         st.sidebar.button("Log Out", key="logout", on_click=LoggedOut_Clicked)
-
 
 def LoggedIn_Clicked(userName, password):
     if login(userName, password):
@@ -41,7 +36,6 @@ def LoggedIn_Clicked(userName, password):
     else:
         st.session_state['loggedIn'] = False;
         st.error("유효하지 않은 ID 또는 패스워드 입니다.")
-
 
 def show_login_page():
     with loginSection:
@@ -54,36 +48,11 @@ def show_main_page():
     st.snow()
     with mainSection:
 
-        st.markdown(
-            """
-            <style>
-                [data-testid=stSidebar] [data-testid=stImage]{
-                    text-align: center;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 85%;
-                }
-            </style>
-            """, unsafe_allow_html=True
-        )
-
+        st.markdown("""<style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center;display: block;margin-left: auto; margin-right: auto; width: 85%;}</style>""", unsafe_allow_html=True        )
         with st.sidebar:
             st.image("ktwiz_emblem.png")
 
-        st.markdown(
-            """
-            <style>
-            [data-testid="stSidebar"][aria-expanded="true"] > div:first-child{
-                width: 340px; 
-            }
-            # [data-testid="stSidebar"][aria-expanded="false"] > div:first-child{
-            #     width: 400px;
-            #     margin-left: -200px;
-            # }
-            
-            """,
-            unsafe_allow_html=True,)
+        st.markdown("""<style>[data-testid="stSidebar"][aria-expanded="true"] > div:first-child{width: 340px; }""", unsafe_allow_html=True,)
 
         id_dataset = pd.read_csv('./player_id_info_2023.csv')
         id_dataset = id_dataset[['team','NAME','POS','TM_ID']]
