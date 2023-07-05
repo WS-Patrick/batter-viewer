@@ -48,6 +48,7 @@ def show_login_page():
             st.button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
 
 def show_main_page():
+    st.snow()
     with mainSection:
 
         st.markdown(
