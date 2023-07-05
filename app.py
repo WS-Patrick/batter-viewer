@@ -18,22 +18,13 @@ loginSection = st.container()
 logOutSection = st.container()
 
 def LoggedOut_Clicked():
-    
-    @st.cache_data
-    def square(x):
-        return x**2
-    
-    @st.cache_data
-    def cube(x):
-        return x**3
-    st.cache_data.clear()
     st.session_state['loggedIn'] = False
     
 
 def show_logout_page():
     loginSection.empty();
     with logOutSection:
-        st.sidebar.button("Reset", key="logout", on_click=LoggedOut_Clicked)
+        st.sidebar.button("로그아웃", key="logout", on_click=LoggedOut_Clicked)
 
 
 def LoggedIn_Clicked(userName, password):
@@ -49,7 +40,7 @@ def show_login_page():
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
-            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
+            st.button("로그인", on_click=LoggedIn_Clicked, args=(userName, password))
 
 def show_main_page():
     with mainSection:
@@ -122,6 +113,21 @@ def show_main_page():
         sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
+        @st.cache_data
+        def square(x):
+            return x**2
+
+        @st.cache_data
+        def cube(x):
+            return x**3
+
+        if st.sidebar.button("Reset"):
+            # Clear values from *all* memoized functions:
+            # i.e. clear values from both square and cube
+            st.cache_data.clear()
+            show_login_page()
+
+        
 
         if option != "-":
             league = select_league(option)
