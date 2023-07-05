@@ -40,6 +40,15 @@ def LoggedIn_Clicked(userName, password):
 
 def show_login_page():
     with loginSection:
+        # st.markdown(""" <style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center; display: block; margin-left: auto; margin-right: auto; width: 25%;}</style>""", unsafe_allow_html=True)
+        # with st.image("ktwiz_emblem.png")
+        
+        st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
+        st.title("KT WIZ :red[BATTER'S ANALYTICS] PAGE")
+        
+        # main_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
+        # st.markdown(main_text, unsafe_allow_html=True)
+        # st.image("ktwiz_emblem.png")
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
