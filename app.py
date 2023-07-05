@@ -136,6 +136,8 @@ def show_main_page():
             st.subheader(':gray[스윙경향성]')
             st.dataframe(swing_viewer_df, width=1300)
 
+            st.divider()
+
         #----------------------------------------------------------------------------------
 
             season_events_df = seoson_inplay_events(player_df)
@@ -147,6 +149,8 @@ def show_main_page():
 
             st.title('[시즌별 :red[인플레이 현황]]')
             st.dataframe(event_viewer_df, width=700, column_config=None)
+
+            st.divider()
 
         #----------------------------------------------------------------------------------
 
@@ -165,6 +169,8 @@ def show_main_page():
             st.subheader(':gray[스윙경향성]')
             st.dataframe(pthrows_swing_df, width=1300)
 
+            st.divider()
+
         # -----------------------------------------------------------------------------------
 
             season_pkind_df = season_pkind(player_df)
@@ -181,6 +187,8 @@ def show_main_page():
 
             st.subheader(':gray[스윙경향성]')
             st.dataframe(pkind_swing_df, width=1300)
+
+            st.divider()
 
         #-----------------------------------------------------------------------------------
 
@@ -199,6 +207,8 @@ def show_main_page():
             st.subheader(':gray[스윙경향성]')
             st.dataframe(pitchname_swing_df, width=1300)
 
+            st.divider()
+
         #-----------------------------------------------------------------------------------
 
             st.title('시즌별 :red[투구지점]')
@@ -207,6 +217,8 @@ def show_main_page():
 
             select_count_option(player_df, pitched_factor, selection1)
 
+            st.divider()
+
         #-----------------------------------------------------------------------------------
 
             st.title('시즌별 :red[스윙지점]')
@@ -214,6 +226,8 @@ def show_main_page():
             selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
             select_sum_option(player_df, swing_factor, selection2)
+
+            st.divider()
 
 
         #-----------------------------------------------------------------------------------
@@ -226,6 +240,8 @@ def show_main_page():
             select_sum_option(player_df, lsa_factor, selection3)
             select_sum_plate_option(player_df, lsa_factor, selection3)
 
+            st.divider()
+
         #------------------------------------------------------------------------------------
 
             st.title('시즌별 :red[Swing Map]')
@@ -235,12 +251,15 @@ def show_main_page():
 
             swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
 
+            st.divider()
+
         #-------------------------------------------------------------------------------------
 
             st.title('시즌별 :red[Spray Chart]')
             spraychart_dataframe = spraychart_df(player_df)
 
             spraychart_fig = season_spraychart(spraychart_dataframe)
+            st.divider()
 
 
 
