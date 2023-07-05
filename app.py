@@ -24,6 +24,15 @@ def show_logout_page():
     loginSection.empty();
     with logOutSection:
         st.sidebar.button("Reset", key="logout", on_click=LoggedOut_Clicked)
+        
+        @st.cache_data
+        def square(x):
+            return x**2
+        
+        @st.cache_data
+        def cube(x):
+            return x**3
+        st.cache_data.clear()
 
 
 def LoggedIn_Clicked(userName, password):
@@ -35,24 +44,11 @@ def LoggedIn_Clicked(userName, password):
 
 
 def show_login_page():
-    @st.cache_data
-    def square(x):
-        return x**2
-    
-    @st.cache_data
-    def cube(x):
-        return x**3
-    
-    if st.button("Clear All"):
-        # Clear values from *all* memoized functions:
-        # i.e. clear values from both square and cube
-        st.cache_data.clear()
-        
-        with loginSection:
-            if st.session_state['loggedIn'] == False:
-                userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
-                password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
-                st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
+    with loginSection:
+        if st.session_state['loggedIn'] == False:
+            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
+            password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
+            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
 
 def show_main_page():
     with mainSection:
