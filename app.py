@@ -9,7 +9,7 @@ from PIL import Image
 from user import login
 
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
-# st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
+st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
 
 headerSection = st.container()
 mainSection = st.container()
