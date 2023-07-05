@@ -16,7 +16,7 @@ st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 # main_title = '<p style="text-align: left; font-family:serif; color:black; font-size: 40px;"> [KT WIZ BATTING ANALYTICS PAGE] </p>'
 # st.markdown(main_title, unsafe_allow_html=True)
 
-st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
+# st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
 
 st.markdown("<span style='color:black; font-family:serif:'>KT WIZ</span> ",unsafe_allow_html=True)
 
