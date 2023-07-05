@@ -18,7 +18,9 @@ st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 
 # st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
 
-st.markdown("<span style='color:black; font-family:serif:'>KT WIZ</span> ",unsafe_allow_html=True)
+st.markdown("<span style='color:black; font-family:Georgia; font-size: 40px; font-weight:bold'>KT WIZ</span> <span style='color:red; font-family:Georgia; font-size: 40px; font-weight:bold'>BATTING ANALYTICS</span> <span style='color:black; font-family:Georgia; font-size: 40px; font-weight:bold'>PAGE</span>"
+            
+            ,unsafe_allow_html=True)
 
 # main_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
 # st.markdown(main_text, unsafe_allow_html=True)
