@@ -27,6 +27,14 @@ def show_logout_page():
 
 
 def LoggedIn_Clicked(userName, password):
+    if login(userName, password):
+        st.session_state['loggedIn'] = True
+    else:
+        st.session_state['loggedIn'] = False;
+        st.error("유효하지 않은 ID 또는 패스워드 입니다.")
+
+
+def show_login_page():
     @st.cache_data
     def square(x):
         return x**2
@@ -39,27 +47,11 @@ def LoggedIn_Clicked(userName, password):
         # Clear values from *all* memoized functions:
         # i.e. clear values from both square and cube
         st.cache_data.clear()
-        
-        if login(userName, password):
-            st.session_state['loggedIn'] = True
-        else:
-            st.session_state['loggedIn'] = False;
-            st.error("유효하지 않은 ID 또는 패스워드 입니다.")
-
-
-def show_login_page():
     with loginSection:
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
             st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
-            # LoginButtonClicked = st.button("Login",)
-            # if LoginButtonClicked:
-            #     if login(userName, password):
-            #         st.session_state['loggedin'] = True
-            #     else:
-            #         st.session_state['loggedIn'] = False;
-            #         st.error("ID 또는 패스워드가 잘 못 입력되었습니다.")
 
 def show_main_page():
     with mainSection:
