@@ -53,8 +53,8 @@ def show_main_page():
 
         #------------------------------------------------------------------------------
 
-        sidebar_title = '<p style="text-align: center; font-family:Times New Roman; color:black; font-size: 70px;font-weight:bold"></p>'
-        st.sidebar.markdown(sidebar_title, unsafe_allow_html=True)
+        # sidebar_title = '<p style="text-align: center; font-family:Times New Roman; color:black; font-size: 70px;font-weight:bold"></p>'
+        # st.sidebar.markdown(sidebar_title, unsafe_allow_html=True)
 
         sidebar_text = '<p style="text-align: center; font-family:sans-serif; color:red; font-size: 24px;font-weight:bold">[타자분석 페이지]</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
