@@ -11,7 +11,7 @@ from user import login
 # st.markdown(""" <style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center; display: block; margin-left: auto; margin-right: auto; width: 25%;}</style>""", unsafe_allow_html=True)
 # with st.image("ktwiz_emblem.png")
 
-st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
+st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 
 main_title = '<p style="text-align: center; font-family:serif; color:gray; font-size: 20px;"> [KT WIZ BATTING ANALYTICS] </p>'
 st.markdown(main_title, unsafe_allow_html=True)
