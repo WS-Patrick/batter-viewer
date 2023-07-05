@@ -4,7 +4,7 @@ from definition import select_league, stats, period_stats, seoson_inplay_events,
 from definition import season_pkind, period_pkind, season_pitchname, period_pitchname, stats_viewer, swing_viewer, event_viewer, stats_viewer_pthrows, swing_viewer_pthrows, swingmap_df, spraychart_df
 from dataframe import dataframe
 from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart
-
+import time
 from PIL import Image
 from user import login
 
@@ -119,6 +119,13 @@ def show_main_page():
             id = int(id)
             player_df = dataframe(league, id)
 
+            progress_text = "Operation in progress. Please wait."
+            my_bar = st.progress(0, text=progress_text)
+            
+            for percent_complete in range(100):
+                time.sleep(0.1)
+                my_bar.progress(percent_complete + 1, text=progress_text)
+            
         #----------------------------------------------------------------------------------
 
             season_stats_df = stats(player_df)
