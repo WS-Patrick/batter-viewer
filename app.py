@@ -18,21 +18,22 @@ loginSection = st.container()
 logOutSection = st.container()
 
 def LoggedOut_Clicked():
+    
+    @st.cache_data
+    def square(x):
+        return x**2
+    
+    @st.cache_data
+    def cube(x):
+        return x**3
+    st.cache_data.clear()
     st.session_state['loggedIn'] = False
+    
 
 def show_logout_page():
     loginSection.empty();
     with logOutSection:
         st.sidebar.button("Reset", key="logout", on_click=LoggedOut_Clicked)
-        
-        @st.cache_data
-        def square(x):
-            return x**2
-        
-        @st.cache_data
-        def cube(x):
-            return x**3
-        st.cache_data.clear()
 
 
 def LoggedIn_Clicked(userName, password):
