@@ -243,6 +243,7 @@ def show_main_page():
             spraychart_fig = season_spraychart(spraychart_dataframe)
             st.divider()
 
+
 with headerSection:
     if 'loggedIn' not in st.session_state:
         st.session_state['loggedIn'] = False
