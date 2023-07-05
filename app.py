@@ -129,7 +129,7 @@ def show_main_page():
         #     show_login_page()
 
         if st.sidebar.button("RESET PAGE"):
-            pyautogui.hotkey("ctrl","F5")
+            pyautogui.hotkey("F5")
 
         if option != "-":
             league = select_league(option)
