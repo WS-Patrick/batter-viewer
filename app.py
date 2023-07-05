@@ -127,7 +127,8 @@ def show_main_page():
         #     st.cache_data.clear()
         #     show_login_page()
 
-        
+        if st.sidebar.button("RESET PAGE"):
+            show_main_page()
 
         if option != "-":
             league = select_league(option)
