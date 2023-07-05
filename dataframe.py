@@ -328,7 +328,7 @@ def dataframe(level, player_id):
                                     'launch_speed','launch_angle','release_spin_rate','release_extension',
                                     'launch_speed_angle','pitch_number','PAofinning','pitch_name','home_score','away_score','level','verrelangle','launch_direction', 'contactX' , 'contactY' , 'contactZ', 'groundX','groundY','game_year','hit_spin_rate', 'catcher'])
 
-    df.to_sql(name='dataframe', con=db, ttl=360)
+    # df.to_sql(name='dataframe', con=db, ttl=360)
   
     db.close()
   
