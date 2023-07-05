@@ -19,13 +19,11 @@ import pymysql
 
 # conn = st.experimental_connection("mydb", type="sql", autocommit=True)
 
-
-
-db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
-
-db.ping()
-
 def dataframe(level, player_id):
+
+    db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
+
+    db.ping ()
   
     cursor = db.cursor()
     sql = """SELECT
@@ -330,11 +328,10 @@ def dataframe(level, player_id):
 
     # df.to_sql(name='dataframe', con=db, ttl=360)
   
+    db.commit()  
     db.close()
   
     if len(df) > 0:
-
-
 
         df['plate_x'] = df['plate_x'] * -1.0
         df['pfx_x'] = df['pfx_x'] * -1.0
