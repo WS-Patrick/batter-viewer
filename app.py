@@ -13,7 +13,7 @@ from user import login
 
 st.set_page_config(page_title="Batter's Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTER'S ANALYTICS] PAGE")
-st.markdown(":gray[[타자 분석 페이지]]")
+st.header(":gray[[타자 분석 페이지]]")
 # main_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
 # st.markdown(main_text, unsafe_allow_html=True)
 # st.image("ktwiz_emblem.png")
