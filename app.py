@@ -13,7 +13,7 @@ from user import login
 
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 
-main_title = '<p style="text-align: center; font-family:serif; color:gray; font-size: 20px;"> [KT WIZ BATTING ANALYTICS] </p>'
+main_title = '<p style="text-align: center; font-family:serif; color:gray; font-size: 20px;"> [KT WIZ BATTING ANALYTICS PAGE] </p>'
 st.markdown(main_title, unsafe_allow_html=True)
 
 # st.title("KT WIZ :red[BATTER'S ANALYTICS] PAGE")
