@@ -113,19 +113,19 @@ def show_main_page():
         sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
-        @st.cache_data
-        def square(x):
-            return x**2
+        # @st.cache_data
+        # def square(x):
+        #     return x**2
 
-        @st.cache_data
-        def cube(x):
-            return x**3
+        # @st.cache_data
+        # def cube(x):
+        #     return x**3
 
-        if st.sidebar.button("RESET PAGE"):
-            # Clear values from *all* memoized functions:
-            # i.e. clear values from both square and cube
-            st.cache_data.clear()
-            show_login_page()
+        # if st.sidebar.button("RESET PAGE"):
+        #     # Clear values from *all* memoized functions:
+        #     # i.e. clear values from both square and cube
+        #     st.cache_data.clear()
+        #     show_login_page()
 
         
 
