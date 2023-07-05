@@ -59,7 +59,7 @@ def show_main_page():
         sidebar_text = '<p style="text-align: center; font-family:sans-serif; color:red; font-size: 24px;font-weight:bold">[타자분석 페이지]</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
-        sidebar_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 16px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
+        sidebar_text = '<p style="text-align: center; font-family:sans-serif; color:gray; font-size: 14px;">본 웹페이지는 kt wiz 전략데이터팀이<br> 개발 및 발행하였으며 허용되는 사용자 외 <br>배포 및 사용을 엄금함</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
         #-------------------------------------------------------------------------
