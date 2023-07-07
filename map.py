@@ -692,3 +692,4 @@ def swingmap_count_option(dataframe, factor):
         season_pitched_fig = swingmap_count_map(selected_df, factor)
         st.plotly_chart(season_pitched_fig, layout="wide")
 
+
