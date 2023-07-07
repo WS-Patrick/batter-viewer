@@ -195,9 +195,8 @@ def show_main_page():
 
             st.title('시즌별 :red[투구지점]')
             pitched_factor = 'player_name'
-            selection1 = st.selectbox('구종유형 선택(투구)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-            select_count_option(player_df, pitched_factor, selection1)
+            select_count_option(player_df, pitched_factor)
 
             st.divider()
 
@@ -205,9 +204,8 @@ def show_main_page():
 
             st.title('시즌별 :red[스윙지점]')
             swing_factor = 'swing'
-            selection2 = st.selectbox('구종유형 선택(스윙)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-            select_sum_option(player_df, swing_factor, selection2)
+            select_sum_option(player_df, swing_factor)
 
             st.divider()
 
@@ -217,10 +215,9 @@ def show_main_page():
             st.title('시즌별 :red[LSA 4+]')
             # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
             lsa_factor = 'launch_speed_angle'
-            selection3 = st.selectbox('구종유형 선택(LSA 4+)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-            select_sum_option(player_df, lsa_factor, selection3)
-            select_sum_plate_option(player_df, lsa_factor, selection3)
+            select_sum_option(player_df, lsa_factor)
+            select_sum_plate_option(player_df, lsa_factor)
 
             st.divider()
 
@@ -229,9 +226,8 @@ def show_main_page():
             st.title('시즌별 :red[Swing Map]')
             swingmap_factor = 'player_name'
             swingmap_dataframe = swingmap_df(player_df)
-            selection4 = st.selectbox('구종유형 선택(SWING MAP)',('Season', 'Fastball', 'Breaking','Off-Speed'))
 
-            swingmap_count_option(swingmap_dataframe, swingmap_factor, selection4)
+            swingmap_count_option(swingmap_dataframe, swingmap_factor)
 
             st.divider()
 
@@ -240,9 +236,13 @@ def show_main_page():
             st.title('시즌별 :red[Spray Chart]')
             spraychart_dataframe = spraychart_df(player_df)
 
-            spraychart_fig = season_spraychart(spraychart_dataframe)
-            st.divider()
+            season_spraychart(spraychart_dataframe)
 
+            with st.expander("Recent 2 Weeks"):
+                spraychart_period_fig = season_period_spraychart(spraychart_dataframe)
+                st.plotly_chart(spraychart_period_fig, layout="wide")
+
+            st.divider()
 
 with headerSection:
     if 'loggedIn' not in st.session_state:
