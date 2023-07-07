@@ -57,10 +57,12 @@ def factor_period_coount_map(dataframe, y_factor):
 
     dataframe = dataframe[(dataframe['game_date'] >= date1) & (dataframe['game_date'] <= date2)]
 
+    col_index = len(dataframe['p_kind'].unique())
+
     if len(dataframe) > 0:
 
-        factor_period_coount_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="count",
-                                                        height = 445, width = 450)
+        factor_period_coount_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="count", facet_col='p_kind',
+                                                        height = 445, width = col_index * 400)
         
         factor_period_coount_map_fig.update_yaxes(domain=[0.1, 0.97])
 
@@ -345,9 +347,11 @@ def factor_period_sum_map(dataframe, y_factor):
 
     dataframe = dataframe[(dataframe['game_date'] >= date1) & (dataframe['game_date'] <= date2)]
 
+    col_index = len(dataframe['p_kind'].unique())
+
     if len(dataframe) > 0 :
 
-        factor_period_sum_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="sum", height = 445, width = 450)
+        factor_period_sum_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, facet_col='p_kind', histfunc="sum", height = 445, width = col_index * 400)
         factor_period_sum_map_fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 
         factor_period_sum_map_fig.update_yaxes(domain=[0.1, 0.97])
@@ -528,97 +532,163 @@ def season_spraychart(dataframe):
 
     return  st.plotly_chart(season_spraychart_fig, layout="wide")
 
+def season_period_spraychart(dataframe):
 
-def select_count_option(dataframe, factor, selection):
+    date2 = pd.to_datetime('today')
+    date1 = date2 - timedelta(weeks=2)
 
-    if selection == 'Season':
+    dataframe = dataframe[(dataframe['game_date'] >= date1) & (dataframe['game_date'] <= date2)]
 
-        season_pitched_fig = factor_year_count_map(dataframe, factor)
-        st.plotly_chart(season_pitched_fig, layout="wide")
+    if len(dataframe) > 0:
 
-        week2_pitched_fig = factor_period_coount_map(dataframe, factor)
+        colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
+            'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
+            'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
+        symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")        
+        season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='events',  facet_col='game_year', symbol="pitch_name",
+                            color_discrete_map=colors,
+                            hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
+                            #  category_orders={"game_year": [2021,2022, 2023]},
+                            height = 580, width = 550)
+        
+        for i, d in enumerate(season_spraychart_fig.data):
+            season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
+
+        season_spraychart_fig.update_yaxes(domain=[0.1, 0.97])
+
+        season_spraychart_fig.update_layout(autosize=False, margin=dict(l=50, r=50, t=50, b=50), xaxis_range=[-10,130], yaxis_range=[-10,130])
+
+        season_spraychart_fig.update_layout({'plot_bgcolor': 'rgba(255,255,255,1)', 'paper_bgcolor': 'rgba(255,255,255,1)',})
+
+        season_spraychart_fig.update_yaxes(gridcolor='rgba(255,255,255,1)')
+        season_spraychart_fig.update_xaxes(gridcolor='rgba(255,255,255,1)')
+
+        season_spraychart_fig.update_traces(marker=dict(size=20))
+
+        season_spraychart_fig.update_layout(showlegend=False)
+
+        season_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=28, y1=28, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+        season_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=135, y1=135, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+        season_spraychart_fig.add_shape(type="path", path="M 0,100 Q 120,120 100,0", line_color="rgba(108,122,137,0.7)", line_width = 5, row="all", col="all")
+
+        season_spraychart_fig.update_xaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+        season_spraychart_fig.update_yaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+
+        return  season_spraychart_fig
     
     else:
-        selected_df = dataframe[dataframe['p_kind'] == selection]
+        season_spraychart_fig = go.Figure()
+        season_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=1, y1=1, line=dict(color="gray", width=1), fillcolor="white", opacity=0.3)
+        season_spraychart_fig.update_layout(width=450, height=100, title="데이터가 존재하지 않습니다.")
+        season_spraychart_fig.update_xaxes(visible=False, range=[0, 1])
+        season_spraychart_fig.update_yaxes(visible=False, range=[0, 1])
+
+        return season_spraychart_fig
+
+
+
+
+def select_count_option(dataframe, factor):
+
+    season_pitched_fig = factor_year_count_map(dataframe, factor)
+    st.plotly_chart(season_pitched_fig, layout="wide")
+
+    with st.expander("Recent 2 Weeks"):
+        week2_pitched_fig = factor_period_coount_map(dataframe, factor)
+        st.plotly_chart(week2_pitched_fig, layout="wide") 
+
+    with st.expander("Fastball"):
+        selected_df = dataframe[dataframe['p_kind'] == "Fastball"]
+        season_pitched_fig = factor_year_count_map(selected_df, factor)
+        st.plotly_chart(season_pitched_fig, layout="wide")
+    
+    with st.expander("Breaking"):
+        selected_df = dataframe[dataframe['p_kind'] == "Breaking"]
         season_pitched_fig = factor_year_count_map(selected_df, factor)
         st.plotly_chart(season_pitched_fig, layout="wide")
 
-        week2_pitched_fig = factor_period_coount_map(selected_df, factor)
-
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")
-
-def select_sum_option(dataframe, factor, selection):
-
-    if selection == 'Season':
-
-        season_pitched_fig = factor_year_sum_map(dataframe, factor)
+    with st.expander("Off-Speed"):
+        selected_df = dataframe[dataframe['p_kind'] == "Off_Speed"]
+        season_pitched_fig = factor_year_count_map(selected_df, factor)
         st.plotly_chart(season_pitched_fig, layout="wide")
 
-        week2_pitched_fig = factor_period_sum_map(dataframe, factor)
+def select_sum_option(dataframe, factor):
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")
+    season_pitched_fig = factor_year_sum_map(dataframe, factor)
+    st.plotly_chart(season_pitched_fig, layout="wide")
+
+    with st.expander("Recent 2 Weeks"):
+        week2_pitched_fig = factor_period_sum_map(dataframe, factor)
+        st.plotly_chart(week2_pitched_fig, layout="wide")
+
+    with st.expander("Fastball"):
+        selected_df = dataframe[dataframe['p_kind'] == "Fastball"]
+        season_pitched_fig = factor_year_sum_map(selected_df, factor)
+        st.plotly_chart(season_pitched_fig, layout="wide")
     
-    else:
-        selected_df = dataframe[dataframe['p_kind'] == selection]
+    with st.expander("Breaking"):
+        selected_df = dataframe[dataframe['p_kind'] == "Breaking"]
+        season_pitched_fig = factor_year_sum_map(selected_df, factor)
+        st.plotly_chart(season_pitched_fig, layout="wide")
+    
+    with st.expander("Off-Speed"):
+        selected_df = dataframe[dataframe['p_kind'] == "Off_Speed"]
         season_pitched_fig = factor_year_sum_map(selected_df, factor)
         st.plotly_chart(season_pitched_fig, layout="wide")
 
-        week2_pitched_fig = factor_period_sum_map(selected_df, factor)
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")
+def select_sum_plate_option(dataframe, factor):
 
-def select_sum_plate_option(dataframe, factor, selection):
+    season_pitched_plate_fig = factor_year_sum_plate_map(dataframe, factor)
+    st.plotly_chart(season_pitched_plate_fig, layout="wide")
 
-    if selection == 'Season':
-
-        season_pitched_plate_fig = factor_year_sum_plate_map(dataframe, factor)
-        st.plotly_chart(season_pitched_plate_fig, layout="wide")
-
+    with st.expander("Recent 2 Weeks"):
         week2_pitched_plate_fig = factor_period_sum_plate_map(dataframe, factor)
+        st.plotly_chart(week2_pitched_plate_fig, layout="wide")   
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_plate_fig, layout="wide")       
-        
-    else:
-        selected_df = dataframe[dataframe['p_kind'] == selection]
-
+    with st.expander("Fastball"):
+        selected_df = dataframe[dataframe['p_kind'] == "Fastball"]
+        season_pitched_plate_fig = factor_year_sum_plate_map(selected_df, factor)
+        st.plotly_chart(season_pitched_plate_fig, layout="wide")
+    
+    with st.expander("Breaking"):
+        selected_df = dataframe[dataframe['p_kind'] == "Breaking"]
         season_pitched_plate_fig = factor_year_sum_plate_map(selected_df, factor)
         st.plotly_chart(season_pitched_plate_fig, layout="wide")
 
-        week2_pitched_plate_fig = factor_period_sum_plate_map(selected_df, factor)
+    with st.expander("Off-Speed"):
+        selected_df = dataframe[dataframe['p_kind'] == "Off_Speed"]
+        season_pitched_plate_fig = factor_year_sum_plate_map(selected_df, factor)
+        st.plotly_chart(season_pitched_plate_fig, layout="wide")
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_plate_fig, layout="wide")       
 
-def swingmap_count_option(dataframe, factor, selection):
+def swingmap_count_option(dataframe, factor):
 
-    if selection == 'Season':
+    season_pitched_fig = swingmap_count_map(dataframe, factor)
+    st.plotly_chart(season_pitched_fig, layout="wide")
 
-        season_pitched_fig = swingmap_count_map(dataframe, factor)
-        st.plotly_chart(season_pitched_fig, layout="wide")
-
+    with st.expander("Recent 2 Weeks"):
         week2_pitched_fig = swingmap_period_count_map(dataframe, factor)
         week2_symbol_fig = swingmap_period_symbol_map(dataframe)
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")
-             st.plotly_chart(week2_symbol_fig, layout="wide")        
-    
-    else:
-        selected_df = dataframe[dataframe['p_kind'] == selection]
+        st.plotly_chart(week2_pitched_fig, layout="wide")
+        st.plotly_chart(week2_symbol_fig, layout="wide")    
+
+    with st.expander("Fastball"):
+        selected_df = dataframe[dataframe['p_kind'] == "Fastball"]
         season_pitched_fig = swingmap_count_map(selected_df, factor)
         st.plotly_chart(season_pitched_fig, layout="wide")
 
-        week2_pitched_fig = swingmap_period_count_map(selected_df, factor)
-        week2_symbol_fig = swingmap_period_symbol_map(dataframe)
+    with st.expander("Breaking"):
+        selected_df = dataframe[dataframe['p_kind'] == "Breaking"]
+        season_pitched_fig = swingmap_count_map(selected_df, factor)
+        st.plotly_chart(season_pitched_fig, layout="wide")
 
-        with st.expander("Recent 2 Weeks"):
-             st.plotly_chart(week2_pitched_fig, layout="wide")
-             st.plotly_chart(week2_symbol_fig, layout="wide")   
+    with st.expander("Off-Speed"):
+        selected_df = dataframe[dataframe['p_kind'] == "Off_Speed"]
+        season_pitched_fig = swingmap_count_map(selected_df, factor)
+        st.plotly_chart(season_pitched_fig, layout="wide")
 
