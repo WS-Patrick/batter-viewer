@@ -62,7 +62,7 @@ def factor_period_coount_map(dataframe, y_factor):
     if len(dataframe) > 0:
 
         factor_period_coount_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="count", facet_col='p_kind',
-                                                          category_orders={"p_kind": ["FASTBALL", "BREAKING", 'OFF_SPEED']},
+                                                          category_orders={"p_kind": ["Fastball", "Breaking", 'Off_Speed']},
                                                         height = 445, width = col_index * 400)
         
         factor_period_coount_map_fig.update_yaxes(domain=[0.1, 0.97])
