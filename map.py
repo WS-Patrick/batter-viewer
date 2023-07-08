@@ -352,7 +352,9 @@ def factor_period_sum_map(dataframe, y_factor):
 
     if len(dataframe) > 0 :
 
-        factor_period_sum_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, facet_col='p_kind', histfunc="sum", height = 445, width = col_index * 400)
+        factor_period_sum_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, facet_col='p_kind', 
+                                                       category_orders={"p_kind": ["Fastball", "Breaking", 'Off_Speed']},
+                                                       histfunc="sum", height = 445, width = col_index * 400)
         factor_period_sum_map_fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 
         factor_period_sum_map_fig.update_yaxes(domain=[0.1, 0.97])
