@@ -128,6 +128,9 @@ def show_main_page():
                 spraychart_dataframe = spraychart_df(player_df)
                 season_spraychart(spraychart_dataframe)
 
+                st.divider()
+
+
             # tabs = st.tabs(select_player)
             
             # for i in range(len(tabs)):
@@ -184,7 +187,7 @@ def show_main_page():
                     # spraychart_dataframe = spraychart_df(player_df)
                     # season_spraychart(spraychart_dataframe)
 
-                    st.divider()
+                    # st.divider()
 
 
 
