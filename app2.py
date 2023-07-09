@@ -76,67 +76,113 @@ def show_main_page():
 
         if st.sidebar.button('실행'):
             
-            tabs = st.tabs(select_player)
+            for i in range(len(select_player)):
+                
+                find_player = player_dataset[player_dataset['NAME'] == select_player[i]]
+                id = find_player.iloc[0]['TM_ID']
+                league = select_league(option)
+        
+                id = int(id)
+                player_df = dataframe(league, id)
+        
+                season_stats_df = stats(player_df)
+                period_stats_df = period_stats(player_df)
+        
+                stats_df = pd.concat([period_stats_df, season_stats_df])
+        
+                stats_viewer_df = stats_viewer(stats_df)
+                swing_viewer_df = swing_viewer(stats_df)
+        
+                progress_text = "Operation in progress. Please wait."
+                my_bar = st.progress(0, text=progress_text)
+                
+                for percent_complete in range(100):
+                    time.sleep(0.1)
+                    my_bar.progress(percent_complete + 1, text=progress_text)
+        
+                st.title(select_player[i])
+        
+                st.subheader('[시즌별 :red[주요현황]]')
+                st.dataframe(stats_viewer_df, width=1300)
+                st.dataframe(swing_viewer_df, width=1300)
+        
+                st.subheader('[시즌별 :red[투구지점]]')
+                pitched_factor = 'player_name'
+                select_count_option(player_df, pitched_factor)
+        
+                st.subheader('[시즌별 :red[스윙지점]]')
+                swing_factor = 'swing'
+                select_sum_option(player_df, swing_factor)
+        
+                st.subheader('[시즌별 :red[LSA 4+]]')
+                lsa_factor = 'launch_speed_angle'
+                select_sum_option(player_df, lsa_factor)
+                select_sum_plate_option(player_df, lsa_factor)
+        
+                st.subheader('[시즌별 :red[Swing Map]]')
+                swingmap_factor = 'player_name'
+                swingmap_dataframe = swingmap_df(player_df)
+                swingmap_count_option(swingmap_dataframe, swingmap_factor)
+        
+                st.subheader('[시즌별 :red[Spray Chart]]')
+                spraychart_dataframe = spraychart_df(player_df)
+                season_spraychart(spraychart_dataframe)
+
+            # tabs = st.tabs(select_player)
             
-            for i in range(len(tabs)):
+            # for i in range(len(tabs)):
 
-                with tabs[i]:
-
-                    find_player = player_dataset[player_dataset['NAME'] == select_player[i]]
-                    id = find_player.iloc[0]['TM_ID']
-                    league = select_league(option)
-
-                    id = int(id)
-                    player_df = dataframe(league, id)
-
-                    season_stats_df = stats(player_df)
-                    period_stats_df = period_stats(player_df)
-
-                    stats_df = pd.concat([period_stats_df, season_stats_df])
-
-                    stats_viewer_df = stats_viewer(stats_df)
-                    swing_viewer_df = swing_viewer(stats_df)
-
-                    progress_text = "Operation in progress. Please wait."
-                    my_bar = st.progress(0, text=progress_text)
+            #     with tabs[i]:
                     
-                    for percent_complete in range(100):
-                        time.sleep(0.1)
-                        my_bar.progress(percent_complete + 1, text=progress_text)
+                    # find_player = player_dataset[player_dataset['NAME'] == select_player[i]]
+                    # id = find_player.iloc[0]['TM_ID']
+                    # league = select_league(option)
 
-                    st.title(select_player[i])
+                    # id = int(id)
+                    # player_df = dataframe(league, id)
 
-                    st.subheader('[시즌별 :red[주요현황]]')
-                    st.dataframe(stats_viewer_df, width=1300)
-                    st.dataframe(swing_viewer_df, width=1300)
+                    # season_stats_df = stats(player_df)
+                    # period_stats_df = period_stats(player_df)
 
-                    st.subheader('[시즌별 :red[투구지점]]')
-                    pitched_factor = 'player_name'
-                    select_count_option(player_df, pitched_factor)
+                    # stats_df = pd.concat([period_stats_df, season_stats_df])
 
-                    st.subheader('[시즌별 :red[스윙지점]]')
-                    swing_factor = 'swing'
-                    select_sum_option(player_df, swing_factor)
+                    # stats_viewer_df = stats_viewer(stats_df)
+                    # swing_viewer_df = swing_viewer(stats_df)
 
-                    st.subheader('[시즌별 :red[LSA 4+]]')
-                    lsa_factor = 'launch_speed_angle'
-                    select_sum_option(player_df, lsa_factor)
-                    select_sum_plate_option(player_df, lsa_factor)
+                    # progress_text = "Operation in progress. Please wait."
+                    # my_bar = st.progress(0, text=progress_text)
+                    
+                    # for percent_complete in range(100):
+                    #     time.sleep(0.1)
+                    #     my_bar.progress(percent_complete + 1, text=progress_text)
 
-                    st.subheader('[시즌별 :red[Swing Map]]')
-                    swingmap_factor = 'player_name'
-                    swingmap_dataframe = swingmap_df(player_df)
-                    swingmap_count_option(swingmap_dataframe, swingmap_factor)
+                    # st.title(select_player[i])
 
-                    st.subheader('[시즌별 :red[Spray Chart]]')
-                    spraychart_dataframe = spraychart_df(player_df)
-                    season_spraychart(spraychart_dataframe)
+                    # st.subheader('[시즌별 :red[주요현황]]')
+                    # st.dataframe(stats_viewer_df, width=1300)
+                    # st.dataframe(swing_viewer_df, width=1300)
 
-                #     with st.expander("Recent 2 Weeks"):
-                #         spraychart_period_fig = season_period_spraychart(spraychart_dataframe)
-                #         st.plotly_chart(spraychart_period_fig, layout="wide")
+                    # st.subheader('[시즌별 :red[투구지점]]')
+                    # pitched_factor = 'player_name'
+                    # select_count_option(player_df, pitched_factor)
 
+                    # st.subheader('[시즌별 :red[스윙지점]]')
+                    # swing_factor = 'swing'
+                    # select_sum_option(player_df, swing_factor)
 
+                    # st.subheader('[시즌별 :red[LSA 4+]]')
+                    # lsa_factor = 'launch_speed_angle'
+                    # select_sum_option(player_df, lsa_factor)
+                    # select_sum_plate_option(player_df, lsa_factor)
+
+                    # st.subheader('[시즌별 :red[Swing Map]]')
+                    # swingmap_factor = 'player_name'
+                    # swingmap_dataframe = swingmap_df(player_df)
+                    # swingmap_count_option(swingmap_dataframe, swingmap_factor)
+
+                    # st.subheader('[시즌별 :red[Spray Chart]]')
+                    # spraychart_dataframe = spraychart_df(player_df)
+                    # season_spraychart(spraychart_dataframe)
 
                     st.divider()
 
