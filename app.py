@@ -84,7 +84,8 @@ def show_main_page():
         sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
         st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
-        if option != "-":
+        # if option != "-":
+        if st.sidebar.button('실행'):
             league = select_league(option)
 
         #------------------------------------------------------------------------------
@@ -251,6 +252,6 @@ with headerSection:
     else:
         if st.session_state['loggedIn']:
             show_main_page()
-            show_logout_page()
+            # show_logout_page()
         else:
             show_login_page()
