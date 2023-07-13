@@ -10,7 +10,6 @@ from user import login
 
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
-st.write("수정중")
 
 headerSection = st.container()
 mainSection = st.container()
