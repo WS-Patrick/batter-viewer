@@ -81,12 +81,13 @@ def show_main_page():
             '리그 선택',
             ("-", "KBO(1군)", "KBO(2군)", "AAA"))
 
-        sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
-        st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
+        # sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
+        # st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
 
         
         # if option != "-":
         if st.sidebar.button('실행'):
+            
             league = select_league(option)
 
         #------------------------------------------------------------------------------
@@ -245,6 +246,8 @@ def show_main_page():
                 st.plotly_chart(spraychart_period_fig, layout="wide")
 
             st.divider()
+        else:
+            st.write("옵션을 선택 후 실행 버튼을 눌러주세요.")
 
 with headerSection:
     if 'loggedIn' not in st.session_state:
