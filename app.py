@@ -27,7 +27,7 @@ def show_logout_page():
 def LoggedIn_Clicked(userName, password):
     if login(userName, password):
         st.session_state['loggedIn'] = True
-        # update_log(userName)
+        update_log(userName)
     else:
         st.session_state['loggedIn'] = False;
         st.error("유효하지 않은 ID 또는 패스워드 입니다.")
@@ -38,7 +38,6 @@ def show_login_page():
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
             st.button("로그인", on_click=LoggedIn_Clicked, args=(userName, password))
-            update_log(userName)
 
 def show_main_page():
     with mainSection:
