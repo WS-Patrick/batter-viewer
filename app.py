@@ -42,7 +42,6 @@ def show_login_page():
 
 def show_main_page():
     with mainSection:
-
         st.markdown("""<style>[data-testid=stSidebar] [data-testid=stImage]{text-align: center;display: block;margin-left: auto; margin-right: auto; width: 85%;}</style>""", unsafe_allow_html=True        )
         with st.sidebar:
             st.image("ktwiz_emblem.png")
