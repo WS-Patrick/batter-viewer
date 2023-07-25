@@ -36,16 +36,17 @@ def show_login_page():
     if 'loggedIn' not in st.session_state:
         st.session_state['loggedIn'] = False
 
-    with st.form(key='loginSection'):
-        if not st.session_state['loggedIn']:
-            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
-            password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
-            
-            if st.form_submit_button("로그인"):
-                LoggedIn_Clicked(userName, password)
-
-            # if submitted:
-            #     LoggedIn_Clicked(userName, password)
+    if not st.session_state['loggedIn']:
+        with st.form(key='loginSection'):
+            if not st.session_state['loggedIn']:
+                userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
+                password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
+                
+                if st.form_submit_button("로그인"):
+                    LoggedIn_Clicked(userName, password)
+    
+                # if submitted:
+                #     LoggedIn_Clicked(userName, password)
 
 # def show_login_page():
 #     with loginSection:
