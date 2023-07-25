@@ -26,16 +26,14 @@ def update_log(userName):
 
     log_df = pd.DataFrame(log_data)
 
-    existing_log = pd.read_csv('./login_log.csv')
+    # Check if the log file already exists
+    try:
+        existing_log = pd.read_csv('./login_log.csv')
+        updated_log = pd.concat([existing_log, log_df], ignore_index=True)
+    except FileNotFoundError:
+        updated_log = log_df
 
-    # # Check if the log file already exists
-    # try:
-    #     existing_log = pd.read_csv('./login_log.csv')
-    #     updated_log = pd.concat([existing_log, log_df], ignore_index=True)
-    # except FileNotFoundError:
-    #     updated_log = log_df
-
-    st.dataframe(existing_log)
+    st.dataframe(updated_log)
 
     # # Save the log to a CSV file
     # updated_log.to_csv('./login_log.csv', index=False)
