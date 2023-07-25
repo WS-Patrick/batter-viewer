@@ -49,7 +49,7 @@ def LoggedIn_Clicked(userName, password):
 #                     LoggedIn_Clicked(userName, password)
 
 def show_login_page():
-    with loginSection:
+    with st.form(key='loginSection'):
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
