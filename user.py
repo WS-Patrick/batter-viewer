@@ -18,13 +18,14 @@ def login (userName, password):
 
 
 def update_log(userName):
-    log_data = {
-        'UserName': [userName],
-        'Timestamp': [pd.Timestamp.now()]
-    }
+    st.write(userName)
+    # log_data = {
+    #     'UserName': [userName],
+    #     'Timestamp': [pd.Timestamp.now()]
+    # }
 
-    log_df = pd.DataFrame(log_data)
-    st.dataframe(log_df)
+    # log_df = pd.DataFrame(log_data)
+    # st.dataframe(log_df)
 
 
 
