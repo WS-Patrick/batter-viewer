@@ -18,8 +18,9 @@ def login (userName, password):
 
 
 def update_log(userName):
+    user = userName
     log_data = {
-        'UserName': [userName],
+        'UserName': [user],
         'Timestamp': [pd.Timestamp.now()]
     }
 
