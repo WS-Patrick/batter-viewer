@@ -8,10 +8,6 @@ import time
 from PIL import Image
 from user import login, update_log
 
-# class SessionState:
-#     def __init__(self, **kwargs):
-#         self.__dict__.update(kwargs)
-
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
 
@@ -28,45 +24,26 @@ def show_logout_page():
     with logOutSection:
         st.sidebar.button("Log Out", key="logout", on_click=LoggedOut_Clicked)
 
+def LoggedIn_Clicked(userName, password):
+    if login(userName, password):
+        st.session_state['loggedIn'] = True
+        update_log(userName)
+    else:
+        st.session_state['loggedIn'] = False;
+        st.error("유효하지 않은 ID 또는 패스워드 입니다.")
+
 def show_login_page():
-    session_state = SessionState(loggedIn=False)
+    if 'loggedIn' not in st.session_state:
+        st.session_state['loggedIn'] = False
 
-    if not session_state.loggedIn:
-        with st.form(key='loginSection'):
-            userName = st.text_input(label="", value="", placeholder="Enter ID")
-            password = st.text_input(label="", value="", placeholder="Enter password", type="password")
-            submitted = st.form_submit_button("Log In")
+    with st.form(key='loginSection'):
+        if not st.session_state['loggedIn']:
+            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
+            password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
+            submitted = st.form_submit_button("로그인",on_click=LoggedIn_Clicked, args=(userName, password))
 
-            if submitted:
-                if login(userName, password):
-                    session_state.loggedIn = True
-                    update_log(userName)
-                else:
-                    st.error("Invalid ID or password.")
-
-
-
-
-# def LoggedIn_Clicked(userName, password):
-#     if login(userName, password):
-#         st.session_state['loggedIn'] = True
-#         update_log(userName)
-#     else:
-#         st.session_state['loggedIn'] = False;
-#         st.error("유효하지 않은 ID 또는 패스워드 입니다.")
-
-# def show_login_page():
-#     if 'loggedIn' not in st.session_state:
-#         st.session_state['loggedIn'] = False
-
-#     with st.form(key='loginSection'):
-#         if not st.session_state['loggedIn']:
-#             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
-#             password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
-#             submitted = st.form_submit_button("로그인")
-
-#             if submitted:
-#                 LoggedIn_Clicked(userName, password)
+            # if submitted:
+            #     LoggedIn_Clicked(userName, password)
 
 # def show_login_page():
 #     with loginSection:
