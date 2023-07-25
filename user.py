@@ -27,7 +27,7 @@ def update_log(userName):
 
     # Check if the log file already exists
     try:
-        existing_log = pd.read_csv('login_log.csv')
+        existing_log = pd.read_csv('./login_log.csv')
         updated_log = pd.concat([existing_log, log_df], ignore_index=True)
     except FileNotFoundError:
         updated_log = log_df
