@@ -35,5 +35,5 @@ def update_log(userName):
 
     st.dataframe(updated_log)
 
-    # # Save the log to a CSV file
-    # updated_log.to_csv('login_log.csv', index=False)
+    # Save the log to a CSV file
+    updated_log.to_csv('login_log.csv', index=False)
