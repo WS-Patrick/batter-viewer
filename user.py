@@ -18,20 +18,34 @@ def login (userName, password):
 
 
 def update_log(userName):
-    user = userName
     log_data = {
-        'UserName': [user],
+        'UserName': [userName],
         'Timestamp': [pd.Timestamp.now()]
     }
 
     log_df = pd.DataFrame(log_data)
+    st.dataframe(log_df)
 
-    # Check if the log file already exists
-    try:
-        existing_log = pd.read_csv('./login_log.csv')
-        updated_log = pd.concat([existing_log, log_df], ignore_index=True)
-    except FileNotFoundError:
-        updated_log = log_df
 
-    # Save the log to a CSV file
-    updated_log.to_csv('./login_log.csv', index=False)
+
+
+
+
+    
+    # user = userName
+    # log_data = {
+    #     'UserName': [user],
+    #     'Timestamp': [pd.Timestamp.now()]
+    # }
+
+    # log_df = pd.DataFrame(log_data)
+
+    # # Check if the log file already exists
+    # try:
+    #     existing_log = pd.read_csv('./login_log.csv')
+    #     updated_log = pd.concat([existing_log, log_df], ignore_index=True)
+    # except FileNotFoundError:
+    #     updated_log = log_df
+
+    # # Save the log to a CSV file
+    # updated_log.to_csv('./login_log.csv', index=False)
