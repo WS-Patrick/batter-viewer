@@ -19,7 +19,7 @@ def login (userName, password):
 
 
 def update_log(userName):
-    user = str(unserName)
+    user = str(userName)
     
     log_data = {
         'UserName': [user],
