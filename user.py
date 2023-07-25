@@ -34,5 +34,7 @@ def update_log(userName):
     except FileNotFoundError:
         updated_log = log_df
 
-    # Save the log to a CSV file
-    updated_log.to_csv('./login_log.csv', index=False)
+    st.dataframe(updated_log)
+
+    # # Save the log to a CSV file
+    # updated_log.to_csv('./login_log.csv', index=False)
