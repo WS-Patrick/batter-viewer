@@ -28,7 +28,6 @@ def LoggedIn_Clicked(userName, password):
     if login(userName, password):
         st.session_state['loggedIn'] = True
         update_log(userName)
-        st.write(userName)
     else:
         st.session_state['loggedIn'] = False;
         st.error("유효하지 않은 ID 또는 패스워드 입니다.")
