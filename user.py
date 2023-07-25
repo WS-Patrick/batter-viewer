@@ -33,4 +33,4 @@ def update_log(userName):
         updated_log = log_df
 
     # Save the log to a CSV file
-    updated_log.to_csv('login_log.csv', index=False)
+    updated_log.to_csv('./login_log.csv', index=False)
