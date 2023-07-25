@@ -33,11 +33,24 @@ def LoggedIn_Clicked(userName, password):
         st.error("유효하지 않은 ID 또는 패스워드 입니다.")
 
 def show_login_page():
-    with loginSection:
-        if st.session_state['loggedIn'] == False:
-            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
-            password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
-            st.button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
+    if 'loggedIn' not in st.session_state:
+        st.session_state['loggedIn'] = False
+
+    with st.form(key='loginSection'):
+        if not st.session_state['loggedIn']:
+            userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
+            password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
+            submitted = st.form_submit_button("Log In")
+
+            if submitted:
+                LoggedIn_Clicked(userName, password)
+
+# def show_login_page():
+#     with loginSection:
+#         if st.session_state['loggedIn'] == False:
+#             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오")
+#             password = st.text_input(label="", value="", placeholder="패스워드를 입력하시오", type="password")
+#             st.button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
 
 def show_main_page():
     with mainSection:
