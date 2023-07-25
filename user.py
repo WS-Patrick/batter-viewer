@@ -19,8 +19,9 @@ def login (userName, password):
 
 
 def update_log(userName):
+    user = str(unserName)
 
-    st.write('user')
+    st.write(user)
     # log_data = {
     #     'UserName': [userName],
     #     'Timestamp': [pd.Timestamp.now()]
