@@ -25,7 +25,7 @@ def show_logout_page():
         st.sidebar.button("Log Out", key="logout", on_click=LoggedOut_Clicked)
 
 def LoggedIn_Clicked(userName, password):
-    if login(userName, password):
+    if login(userName, password) == True:
         update_log(userName)
         st.session_state['loggedIn'] = True
     else:
