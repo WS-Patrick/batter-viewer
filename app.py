@@ -40,7 +40,8 @@ def show_login_page():
         if not st.session_state['loggedIn']:
             userName = st.text_input(label="", value="", placeholder="ID를 입력하시오.")
             password = st.text_input(label="", value="", placeholder="비밀번호를 입력하시오.", type="password")
-            submitted = st.form_submit_button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
+            st.button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
+            # submitted = st.form_submit_button("Log In", on_click=LoggedIn_Clicked, args=(userName, password))
 
             # if submitted:
             #     LoggedIn_Clicked(userName, password)
