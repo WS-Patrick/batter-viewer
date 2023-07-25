@@ -23,8 +23,7 @@ def update_log(userName):
     
     log_data = {
         'UserName': [user],
-        'Timestamp': [pd.Timestamp.now()]
-    }
+        'Timestamp': [pd.Timestamp.now()]}
 
     log_df = pd.DataFrame(log_data)
 
