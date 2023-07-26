@@ -39,8 +39,3 @@ def update_log(userName):
     # Save the log to a CSV file
     updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
 
-    cd local_git_folder
-    git add login_log.csv
-    git commit -m 'my commit message'
-    git push 
-    
