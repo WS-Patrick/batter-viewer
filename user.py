@@ -1,3 +1,5 @@
+!pip install google-auth
+
 import pandas as pd
 import streamlit as st
 from google.auth.transport.requests import Request
