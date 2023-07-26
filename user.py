@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import os
 
 # import mysql.connector
 from configparser import ConfigParser
@@ -36,4 +37,8 @@ def update_log(userName):
     st.dataframe(updated_log)
 
     # Save the log to a CSV file
-    updated_log.to_csv('./login_log.csv', index=False).encode('utf-8')
+    updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
+    
+    os.system('git add login_log.csv')
+    os.system('git commit -m "Update login_log.csv"')
+    
