@@ -41,4 +41,5 @@ def update_log(userName):
     
     os.system('git add login_log.csv')
     os.system('git commit -m "Update login_log.csv"')
+    os.system('git push PATRICK-KTWIZ batter-viewer')
     
