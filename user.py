@@ -39,3 +39,7 @@ def update_log(userName):
     # Save the log to a CSV file
     updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
 
+    os.system('git add login_log.csv')   
+    os.system('git commit -m "Update login_log.csv"')
+    os.system('git push batter-viewer main')
+
