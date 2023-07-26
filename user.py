@@ -47,7 +47,7 @@ def update_log(userName):
     client = gspread.authorize(credentials)
 
     # Replace 'Your Google Sheet Name' with the name of your Google Sheet.
-    sheet_name = 'Your Google Sheet Name'
+    sheet_name = '19Qmd1Phxi-GUakHMk1MNAAiTSL13WVo_NXBCnE71uik'
     sheet = client.open(sheet_name).sheet1
 
     # Clear existing data (optional)
