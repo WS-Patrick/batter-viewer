@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import os
+from git import Repo
 
 # import mysql.connector
 from configparser import ConfigParser
@@ -18,6 +19,31 @@ def login (userName, password):
     else:
         return False
 
+# def update_log(userName):
+#     user = str(userName)
+    
+#     log_data = {
+#         'UserName': [user],
+#         'Timestamp': [pd.Timestamp.now()]}
+
+#     log_df = pd.DataFrame(log_data)
+
+#     # Check if the log file already exists
+#     try:
+#         existing_log = pd.read_csv('./login_log.csv')
+#         updated_log = pd.concat([existing_log, log_df], ignore_index=True)
+#     except FileNotFoundError:
+#         updated_log = log_df
+
+#     st.dataframe(updated_log)
+
+#     # Save the log to a CSV file
+#     updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
+
+#     os.system('git add login_log.csv')   
+#     os.system('git commit -m "Update login_log.csv"')
+#     os.system('git push https://github.com/PATRICK-KTWIZ/batter-viewer.git main') 
+
 def update_log(userName):
     user = str(userName)
     
@@ -34,13 +60,15 @@ def update_log(userName):
     except FileNotFoundError:
         updated_log = log_df
 
+    # Display the updated DataFrame (optional)
     st.dataframe(updated_log)
 
     # Save the log to a CSV file
     updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
 
-    os.system('git add login_log.csv')   
-    os.system('git commit -m "Update login_log.csv"')
-    os.system('git push https://github.com/PATRICK-KTWIZ/batter-viewer.git main') 
-
-
+    # Commit and push the changes to the remote repository using gitpython
+    repo = Repo('.')
+    repo.git.add('login_log.csv')
+    repo.index.commit('Update login_log.csv')
+    origin = repo.remote(name='origin')
+    origin.push()
