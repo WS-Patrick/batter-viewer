@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
-import os
-import logging
+from git import Repo
 
 # import mysql.connector
 from configparser import ConfigParser
@@ -40,7 +39,17 @@ def update_log(userName):
     # Save the log to a CSV file
     updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
 
-    os.system('git add login_log.csv')   
-    os.system('git commit -m "Update login_log.csv"')
-    os.system('git push https://github.com/PATRICK-KTWIZ/batter-viewer.git main') 
+    repo = Repo('.')
+    repo.git.add('login_log.csv')
+    repo.index.commit('Update login_log.csv')
+    origin = repo.remote(name='origin')
+    origin.push()
+
+
+
+
+
+    # os.system('git add login_log.csv')   
+    # os.system('git commit -m "Update login_log.csv"')
+    # os.system('git push https://github.com/PATRICK-KTWIZ/batter-viewer.git main') 
 
