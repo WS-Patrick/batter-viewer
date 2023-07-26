@@ -42,7 +42,7 @@ def update_log(userName):
     repo = Repo('.')
     repo.git.add('login_log.csv')
     repo.index.commit('Update login_log.csv')
-    origin = repo.remote(name='origin')
+    origin = repo.remote(name='https://github.com/PATRICK-KTWIZ/batter-viewer.git')
     origin.push()
 
 
