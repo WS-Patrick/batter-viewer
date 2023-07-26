@@ -64,7 +64,7 @@ def update_log(userName):
     st.dataframe(updated_log)
 
     # Save the log to a log file using Python logging module
-    logging.basicConfig(filename='login_history.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename='https://github.com/PATRICK-KTWIZ/batter-viewer.git', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.info(f"User {user} logged in at {pd.Timestamp.now()}")
 
     # Save the updated_log DataFrame to a CSV file (optional, if needed)
