@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
-import os
-from git import Repo
+# import os
+# from git import Repo
 
 # import mysql.connector
 from configparser import ConfigParser
@@ -37,14 +37,37 @@ def update_log(userName):
 
     st.dataframe(updated_log)
 
-    # Save the log to a CSV file
-    updated_log.to_csv(csv_file, index=False)
+
+    
+    scope = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
+    
+    # Replace 'your-credentials.json' with your own service account credentials file.
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('streamlit-project-394007-c7a8b5f570dd.json', scope)
+    client = gspread.authorize(credentials)
+
+    # Replace 'Your Google Sheet Name' with the name of your Google Sheet.
+    sheet_name = 'Your Google Sheet Name'
+    sheet = client.open(sheet_name).sheet1
+
+    # Clear existing data (optional)
+    # sheet.clear()
+
+    # Append new data to the Google Sheet
+    existing_data = sheet.get_all_records()
+    df_to_append = pd.DataFrame(log_data)
+    new_data = existing_data + df_to_append.to_dict('records')
+    sheet.insert_rows(new_data)
+
+
+
+
+
     # updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
 
 #     os.system('git add login_log.csv')   
 #     os.system('git commit -m "Update login_log.csv"')
 #     os.system('git push https://github.com/PATRICK-KTWIZ/batter-viewer.git main') 
-
 
     # repo = Repo('.')
     # repo.git.add('login_log.csv')
