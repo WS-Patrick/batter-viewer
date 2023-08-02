@@ -1,4 +1,4 @@
-!pip install google-auth
+# !pip install google-auth
 
 import pandas as pd
 import streamlit as st
