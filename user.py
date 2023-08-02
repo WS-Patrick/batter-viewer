@@ -5,13 +5,13 @@ import streamlit as st
 # from google.auth.transport.requests import Request
 # from google.oauth2.service_account import Credentials
 # from oauth2client.service_account import ServiceAccountCredentials
-import gspread
+# import gspread
 # import os
 # from git import Repo
 
 
 # import mysql.connector
-from configparser import ConfigParser
+# from configparser import ConfigParser
 # cnx: mysql.connector.connect = None
 
 def login (userName, password):
