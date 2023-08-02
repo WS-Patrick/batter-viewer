@@ -26,7 +26,7 @@ def show_logout_page():
 
 def LoggedIn_Clicked(userName, password):
     if login(userName, password):
-        update_log(userName)
+        # update_log(userName)
         st.session_state['loggedIn'] = True
         
     else:
