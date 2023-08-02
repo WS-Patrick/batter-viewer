@@ -6,7 +6,7 @@ from dataframe import dataframe
 from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart
 import time
 from PIL import Image
-from user import login, update_log
+from user import login
 
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
 st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
