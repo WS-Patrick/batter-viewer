@@ -26,48 +26,48 @@ def login (userName, password):
     else:
         return False
 
-def update_log(userName):
-    user = str(userName)
+# def update_log(userName):
+#     user = str(userName)
     
-    log_data = {
-        'UserName': [user],
-        'Timestamp': [pd.Timestamp.now()]}
+#     log_data = {
+#         'UserName': [user],
+#         'Timestamp': [pd.Timestamp.now()]}
 
-    log_df = pd.DataFrame(log_data)
+#     log_df = pd.DataFrame(log_data)
 
-    # Check if the log file already exists
-    try:
-        existing_log = pd.read_csv('./login_log.csv')
-        updated_log = pd.concat([existing_log, log_df], ignore_index=True)
-    except FileNotFoundError:
-        updated_log = log_df
+#     # Check if the log file already exists
+#     try:
+#         existing_log = pd.read_csv('./login_log.csv')
+#         updated_log = pd.concat([existing_log, log_df], ignore_index=True)
+#     except FileNotFoundError:
+#         updated_log = log_df
 
-    st.dataframe(updated_log)
+#     st.dataframe(updated_log)
 
 
     
-    scope = ['https://spreadsheets.google.com/feeds',
-             'https://www.googleapis.com/auth/drive']
+#     scope = ['https://spreadsheets.google.com/feeds',
+#              'https://www.googleapis.com/auth/drive']
     
-    # Replace 'your-credentials.json' with your own service account credentials file.
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('streamlit-project-394007-c7a8b5f570dd.json', scope)
-    client = gspread.authorize(credentials)
+#     # Replace 'your-credentials.json' with your own service account credentials file.
+#     credentials = ServiceAccountCredentials.from_json_keyfile_name('streamlit-project-394007-c7a8b5f570dd.json', scope)
+#     client = gspread.authorize(credentials)
 
-    # Replace 'Your Google Sheet Name' with the name of your Google Sheet.
-    sheet_name = '19Qmd1Phxi-GUakHMk1MNAAiTSL13WVo_NXBCnE71uik'
-    sheet = client.open(sheet_name).sheet1
+#     # Replace 'Your Google Sheet Name' with the name of your Google Sheet.
+#     sheet_name = '19Qmd1Phxi-GUakHMk1MNAAiTSL13WVo_NXBCnE71uik'
+#     sheet = client.open(sheet_name).sheet1
 
-    # Clear existing data (optional)
-    # sheet.clear()
+#     # Clear existing data (optional)
+#     # sheet.clear()
 
-    # Append new data to the Google Sheet
-    existing_data = sheet.get_all_records()
-    df_to_append = pd.DataFrame(log_data)
-    new_data = existing_data + df_to_append.to_dict('records')
-    sheet.insert_rows(new_data)
+#     # Append new data to the Google Sheet
+#     existing_data = sheet.get_all_records()
+#     df_to_append = pd.DataFrame(log_data)
+#     new_data = existing_data + df_to_append.to_dict('records')
+#     sheet.insert_rows(new_data)
 
 
-
+# -------------------------------------------------------------------------------------------------------------
 
 
     # updated_log.to_csv('./login_log.csv', index=False, encoding='utf-8')
