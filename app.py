@@ -98,6 +98,8 @@ def show_main_page():
             id = int(id)
             player_df = dataframe(league, id)
 
+            st.text('<본 기록관련 정보는 트랙맨이 설치되지 않거나 측정이 되지 않을 경우 반영이 되지 않습니다. 실제 기록과 차이가 발생될 수 있음을 양지하여 주시기 바랍니다.>')
+
             progress_text = "Operation in progress. Please wait."
             my_bar = st.progress(0, text=progress_text)
             
@@ -133,8 +135,11 @@ def show_main_page():
 
             event_viewer_df = event_viewer(events_df)
 
+            def color_coding(dataframe):
+                return ['background-color:gray'] * len(dataframe) if dataframe.game_year == "2 Weeks" else ['background-color:white'] * len(dataframe)
+
             st.title('[시즌별 :red[인플레이 현황]]')
-            st.dataframe(event_viewer_df, width=700, column_config=None)
+            st.dataframe(event_viewer_df.style.apply(color_coding, axis=1), width=700, column_config=None)
 
             st.divider()
 
