@@ -98,14 +98,14 @@ def show_main_page():
             id = int(id)
             player_df = dataframe(league, id)
 
-            st.text('<본 기록관련 정보는 트랙맨이 설치되지 않거나 측정이 되지 않을 경우 반영이 되지 않습니다. 실제 기록과 차이가 발생될 수 있음을 양지하여 주시기 바랍니다.>')
-
             progress_text = "Operation in progress. Please wait."
             my_bar = st.progress(0, text=progress_text)
             
             for percent_complete in range(100):
                 time.sleep(0.1)
                 my_bar.progress(percent_complete + 1, text=progress_text)
+
+            st.text('<본 기록관련 정보는 트랙맨이 설치되지 않거나 측정이 되지 않을 경우 반영이 되지 않습니다. 실제 기록과 차이가 발생될 수 있음을 양지하여 주시기 바랍니다.>')
             
         #----------------------------------------------------------------------------------
 
