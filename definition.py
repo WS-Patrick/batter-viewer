@@ -20,7 +20,6 @@ def select_league(option):
         league == "'KoreaBaseballOrganization'"
         return league
 
-
 def stats(player_df):
 
     merged_base_df = base_df(player_df)
