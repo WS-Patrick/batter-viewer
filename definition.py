@@ -10,10 +10,10 @@ def select_league(option):
     elif option == "KBO(2군)":
         league = "'KBO Minors'"
         return league
-    elif option == "AAA(마이너리그)":
+    elif option == "AAA(마이너)":
         league =  "'aaa'"
         return league
-    elif option == "KBA(아마추어)":
+    elif option == "KBA(아마)":
         league =  "'TeamExclusive'"
         return league
     else:
