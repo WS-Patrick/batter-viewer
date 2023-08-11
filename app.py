@@ -80,7 +80,7 @@ def show_main_page():
 
         option = st.sidebar.selectbox(
             '리그 선택',
-            ("-", "KBO(1군)", "KBO(2군)", "AAA(마이너리그)","KBA(아마추어)"))
+            ("-", "KBO(1군)", "KBO(2군)", "AAA(마이너)","KBA(아마)"))
 
         # sidebar_text = '<p style="font-family:sans-serif; color:gray; font-size: 14px;">(팀 / 선수 / 리그 선택시 자동실행)</p>'
         # st.sidebar.markdown(sidebar_text, unsafe_allow_html=True)
