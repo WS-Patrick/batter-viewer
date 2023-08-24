@@ -219,11 +219,16 @@ def show_main_page():
         #-----------------------------------------------------------------------------------
 
             st.title('시즌별 :red[LSA 4+]')
+
+            st.caption(':gray[<Baseball Savant에서 사용하는 타구의 6단계를 사용하여 타구의 질을 구분하고 그 중 안타 확률이 높은 LSA 4+ 타구를 맵에 구현<br>LSA 1: Weak / LSA 2: Topped / LSA 3: Under / LSA 4: Flare & Burner / LSA 5: Solid Contact / LSA 6: Barrel>]')
+            
             # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
             lsa_factor = 'launch_speed_angle'
 
             select_sum_option(player_df, lsa_factor)
             select_sum_plate_option(player_df, lsa_factor)
+
+            st.caption(':gray[<Baseball Savant에서 사용하는 타구의 6단계를 사용하여 타구의 질을 구분하고 그 중 안타 확률이 높은 LSA 4+ 타구를 맵에 구현<br>LSA 1: Weak / LSA 2: Topped / LSA 3: Under / LSA 4: Flare & Burner / LSA 5: Solid Contact / LSA 6: Barrel>]')
 
             st.divider()
 
