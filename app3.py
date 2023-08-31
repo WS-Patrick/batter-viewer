@@ -12,7 +12,7 @@ from user import login
 COOKIE_TOKEN = "my_unique_cookie_token"
 
 st.set_page_config(page_title="Batting Analytics Page", layout="wide")
-st.title("KT WIZ :red[BATTING ANALYTICS] PAGE")
+st.title("KT WIZ :red[BATTING ANALYTICS] PAGE[Multiple Choice]")
 
 headerSection = st.container()
 mainSection = st.container()
