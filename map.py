@@ -118,7 +118,7 @@ def swingmap_count_map(dataframe, y_factor):
     col_index = len(dataframe['swingmap'].unique())
 
     swingmap_count_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="count", facet_col='swingmap',
-                                                category_orders={"swingmap": ["called_strike", "ball", 'foul','whiff','hit','out']},
+                                                category_orders={"swingmap": ["Called_Strike", "Ball", 'Foul','Whiff','HIT','Out']},
                                                 height = 365, width = col_index*300)
     swingmap_count_map_fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 
@@ -171,7 +171,7 @@ def swingmap_period_count_map(dataframe, y_factor):
     if len(dataframe) > 0:
 
         swingmap_period_count_map_fig = px.density_contour(dataframe, x='plate_x', y='plate_z', z=y_factor, histfunc="count", facet_col='swingmap',
-                                                            category_orders={"swingmap": ["called_strike", "ball", 'foul','whiff','hit','out']},
+                                                            category_orders={"swingmap": ["Called_Strike", "Ball", 'Foul','Whiff','HIT','Out']},
                                                             height = 365, width = col_index*300)
         swingmap_period_count_map_fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 
@@ -238,7 +238,7 @@ def swingmap_period_symbol_map(dataframe):
                                                     color_discrete_map=colors,
                                                     hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle"],
                                                     template="simple_white",
-                                                    category_orders={"swingmap": ["called_strike", "ball", 'foul','whiff','hit','out']},
+                                                    category_orders={"swingmap": ["Called_Strike", "Ball", 'Foul','Whiff','HIT','Out']},
                                                     height = 385, width = col_index*290)
 
         swingmap_period_symbol_map_fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
