@@ -377,17 +377,17 @@ def swing_viewer_pitchname(dataframe):
 def swingmap_df(dataframe):
 
     called_strike_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['description'] == "called_strike")]
-    called_strike_df['swingmap'] = 'called_strike'
+    called_strike_df['swingmap'] = 'Called_strike'
     whiff_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['whiff'] == 1)]
-    whiff_df['swingmap'] = 'whiff'
+    whiff_df['swingmap'] = 'Whiff'
     ball_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['type'] == "B")]
-    ball_df['swingmap'] = 'ball'
+    ball_df['swingmap'] = 'Ball'
     foul_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['foul'] == 1)]
-    foul_df['swingmap'] = 'foul'
+    foul_df['swingmap'] = 'Foul'
     hit_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['hit'] == 1)]
-    hit_df['swingmap'] = 'hit'
+    hit_df['swingmap'] = 'HIT'
     out_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['field_out'] == 1)]
-    out_df['swingmap'] = 'out'
+    out_df['swingmap'] = 'Out'
 
     swingmap_dataframe = pd.concat([called_strike_df, whiff_df, ball_df, foul_df, hit_df, out_df])
 
