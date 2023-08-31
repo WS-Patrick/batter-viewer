@@ -124,6 +124,18 @@ def show_main_page():
             st.subheader(':gray[스윙경향성]')
             st.dataframe(swing_viewer_df, width=1300)
 
+            with st.expander("LSA(Launch Speed Angle) 이란?"):
+                st.write("LSA(Launch Speed Angle)은 Baseball Savant의 타구표에서 활용되는 지표로 6단계로 타구의 질을 구분하고 있음 (*괄호의 %는 안타확률)")
+                st.write("LSA 1: Weak(10.4%) / LSA 2: Topped(22.3%) / LSA 3: Under(7.7%) / LSA 4: Flare & Burner(70.8%) / LSA 5: Solid Contact(46.3%) / LSA 6: Barrel(70.5%)")
+                st.markdown("""<style>[data-testid=stExpander] [data-testid=stImage]{text-align: left;display: block;margin-left: 10; margin-right: auto; width: 50%;}</style>""", unsafe_allow_html=True)
+                st.image("approach.jpg")
+
+            with st.expander("타격 어프로치 구분"):
+                st.write("타격 어프로치는 타자들의 타격성향을 나타내기 위해 작성된 내용으로 리그의 평균적인 존에 대한 스윙시도, 존 외부에 대한 스윙시도를 기준으로 4가지의 성향을 구분하고 있음")
+                st.markdown("""<style>[data-testid=stExpander] [data-testid=stImage]{text-align: left;display: block;margin-left: 10; margin-right: auto; width: 80%;}</style>""", unsafe_allow_html=True)
+                st.image("plate_discipline.png")
+            
+
             st.divider()
 
         #----------------------------------------------------------------------------------
@@ -220,16 +232,18 @@ def show_main_page():
 
             st.title('시즌별 :red[LSA 4+]')
 
-            st.caption(':gray[<Baseball Savant에서 사용하는 타구의 6단계를 사용하여 타구의 질을 구분하고 그 중 안타 확률이 높은 LSA 4+ 타구를 맵에 구현<br>LSA 1: Weak / LSA 2: Topped / LSA 3: Under / LSA 4: Flare & Burner / LSA 5: Solid Contact / LSA 6: Barrel>]')
-            
-            # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
+                        # lsa_dataframe = player_df[player_df['launch_speed_angle'] >= 4]
             lsa_factor = 'launch_speed_angle'
 
             select_sum_option(player_df, lsa_factor)
             select_sum_plate_option(player_df, lsa_factor)
 
-            st.caption(':gray[<Baseball Savant에서 사용하는 타구의 6단계를 사용하여 타구의 질을 구분하고 그 중 안타 확률이 높은 LSA 4+ 타구를 맵에 구현<br>LSA 1: Weak / LSA 2: Topped / LSA 3: Under / LSA 4: Flare & Burner / LSA 5: Solid Contact / LSA 6: Barrel>]')
-
+            with st.expander("LSA(Launch Speed Angle) 이란?"):
+                st.write("LSA(Launch Speed Angle)은 Baseball Savant의 타구표에서 활용되는 지표로 6단계로 타구의 질을 구분하고 있음 (*괄호의 %는 안타확률)")
+                st.write("LSA 1: Weak(10.4%) / LSA 2: Topped(22.3%) / LSA 3: Under(7.7%) / LSA 4: Flare & Burner(70.8%) / LSA 5: Solid Contact(46.3%) / LSA 6: Barrel(70.5%)")
+                st.markdown("""<style>[data-testid=stExpander] [data-testid=stImage]{text-align: left;display: block;margin-left: 10; margin-right: auto; width: 50%;}</style>""", unsafe_allow_html=True)
+                st.image("approach.jpg")
+            
             st.divider()
 
         #------------------------------------------------------------------------------------
