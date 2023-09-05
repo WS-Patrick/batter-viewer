@@ -377,7 +377,7 @@ def swing_viewer_pitchname(dataframe):
 def swingmap_df(dataframe):
 
     called_strike_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['description'] == "called_strike")]
-    called_strike_df['swingmap'] = 'Called_strike'
+    called_strike_df['swingmap'] = 'Called_Strike'
     whiff_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['whiff'] == 1)]
     whiff_df['swingmap'] = 'Whiff'
     ball_df = dataframe[(dataframe['game_year'] >= 2021)  & (dataframe['type'] == "B")]
