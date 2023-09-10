@@ -591,6 +591,123 @@ def season_period_spraychart(dataframe):
 
         return season_spraychart_fig
 
+def season_zone_spraychart(dataframe, zone):
+
+    game_year = dataframe['game_year'].max()
+    dataframe = dataframe[(dataframe['game_year'] == game_year) & (dataframe['new_zone'] == zone)]
+    
+    colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
+          'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
+          'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
+    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+
+    season_zone_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='events',  facet_col='new_zone', facet_row='new_zone', symbol="pitch_name",
+                         color_discrete_map=colors,
+                         hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
+                        #  category_orders={"game_year": [2021,2022, 2023]},
+                         height = 300, width = 300)
+    
+    for i, d in enumerate(season_zone_spraychart_fig.data):
+        season_zone_spraychart_fig.data[i].marker.symbol = symbols[season_zone_spraychart_fig.data[i].name.split(', ')[1]]
+
+    season_zone_spraychart_fig.update_yaxes(domain=[0.1, 0.97])
+
+    season_zone_spraychart_fig.update_layout(autosize=False, margin=dict(l=50, r=50, t=50, b=50), xaxis_range=[-10,130], yaxis_range=[-10,130])
+
+    season_zone_spraychart_fig.update_layout({'plot_bgcolor': 'rgba(255,255,255,1)', 'paper_bgcolor': 'rgba(255,255,255,1)',})
+
+    season_zone_spraychart_fig.update_yaxes(gridcolor='rgba(255,255,255,1)')
+    season_zone_spraychart_fig.update_xaxes(gridcolor='rgba(255,255,255,1)')
+
+    season_zone_spraychart_fig.update_traces(marker=dict(size=20))
+
+    season_zone_spraychart_fig.update_layout(showlegend=False)
+
+    season_zone_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=28, y1=28, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+    season_zone_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=135, y1=135, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+    season_zone_spraychart_fig.add_shape(type="path", path="M 0,100 Q 120,120 100,0", line_color="rgba(108,122,137,0.7)", line_width = 5, row="all", col="all")
+
+    season_zone_spraychart_fig.update_xaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+    season_zone_spraychart_fig.update_yaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+
+    return  season_zone_spraychart_fig
+
+
+def zone_spraychart_fig(spraychart_dataframe):
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        zone = 'nz1'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col2:
+        zone = 'nz2'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col3:
+        zone = 'nz3'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+
+    col4, col5, col6 = st.columns(3)
+
+    with col4:
+        zone = 'nz4'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col5:
+        zone = 'core'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col6:
+        zone = 'nz6'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    col7, col8, col9 = st.columns(3)
+
+    with col7:
+        zone = 'nz7'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col8:
+        zone = 'nz8'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+    with col9:
+        zone = 'nz9'
+        season_zone_spraychart_fig = season_zone_spraychart(spraychart_dataframe, zone)
+        season_zone_spraychart_fig.update_layout(height=500, width=500)
+        season_zone_spraychart_fig.update_coloraxes(showscale=False)
+        st.plotly_chart(season_zone_spraychart_fig, layout="wide")
+
+
 
 
 
