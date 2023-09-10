@@ -3,7 +3,7 @@ import pandas as pd
 from definition import select_league, stats, period_stats, seoson_inplay_events, period_inplay_events, season_pthrows, period_pthrows, stats_viewer_pkind, swing_viewer_pkind, stats_viewer_pitchname, swing_viewer_pitchname
 from definition import season_pkind, period_pkind, season_pitchname, period_pitchname, stats_viewer, swing_viewer, event_viewer, stats_viewer_pthrows, swing_viewer_pthrows, swingmap_df, spraychart_df
 from dataframe import dataframe
-from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart
+from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart, zone_spraychart_fig
 import time
 from PIL import Image
 from user import login
@@ -266,6 +266,9 @@ def show_main_page():
             with st.expander("Recent 2 Weeks"):
                 spraychart_period_fig = season_period_spraychart(spraychart_dataframe)
                 st.plotly_chart(spraychart_period_fig, layout="wide")
+
+            with st.expander("by S-Zone(최근연도)"):
+                zone_spraychart_fig(spraychart_dataframe)
 
             st.divider()
         else:
