@@ -620,6 +620,10 @@ def show_main_page():
                 spraychart_dataframe = spraychart_df(batter_raw_df)
                 season_spraychart(spraychart_dataframe)
 
+                with st.expander("by S-Zone(최근연도)"):
+                    st.write("S존 기준차트")
+                    zone_spraychart_fig(spraychart_dataframe)
+
             st.divider()
 
 
