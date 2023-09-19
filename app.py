@@ -268,7 +268,7 @@ def show_main_page():
                 st.plotly_chart(spraychart_period_fig, layout="wide")
 
             with st.expander("by S-Zone(최근연도)"):
-                st.write("최근연도 차트")
+                st.write("S존 기준차트")
                 zone_spraychart_fig(spraychart_dataframe)
 
             st.divider()
