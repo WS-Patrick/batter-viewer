@@ -622,7 +622,8 @@ def show_main_page():
 
                 with st.expander(f" by S Zone:  {batter_name}"):
                     st.write("S존 기준차트")
-                    zone_spraychart_fig(spraychart_dataframe)
+                    st.dataframe(spraychart_dataframe)
+                    # zone_spraychart_fig(spraychart_dataframe)
 
 
             st.divider()
