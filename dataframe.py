@@ -261,6 +261,9 @@ def dataframe(level, player_id):
     -- catcher
     , catcher as catcher
 
+    -- hangtime
+    , HangTime
+
     -- pitkind
         FROM 
             
@@ -324,7 +327,7 @@ def dataframe(level, player_id):
                       columns = ['game_id','pitch_type', 'game_date', 'release_speed', 'release_pos_x', 'release_pos_z',  'player_name', 'batname', 'batter', 'pitcher', 'events', 'description', 'zone', 'des', 'stand', 'p_throw', 'pitcherteam','batterteam', 'home_team' , 'away_team',
                                     'type', 'bb_type', 'balls', 'strikes', 'pfx_x', 'pfx_z', 'plate_x', 'plate_z', 'out_when_up', 'inning', 'inning_topbot', 'hit_distance_sc',
                                     'launch_speed','launch_angle','release_spin_rate','release_extension',
-                                    'launch_speed_angle','pitch_number','PAofinning','pitch_name','home_score','away_score','level','verrelangle','launch_direction', 'contactX' , 'contactY' , 'contactZ', 'groundX','groundY','game_year','hit_spin_rate', 'catcher'])
+                                    'launch_speed_angle','pitch_number','PAofinning','pitch_name','home_score','away_score','level','verrelangle','launch_direction', 'contactX' , 'contactY' , 'contactZ', 'groundX','groundY','game_year','hit_spin_rate', 'catcher', 'hangtime'])
 
     # df.to_sql(name='dataframe', con=db, ttl=360)
   
@@ -534,7 +537,7 @@ def dataframe(level, player_id):
                 'exit_speed(km)','launch_angle','launch_direction','hit_distance','hit_spin_rate','launch_speed_angle', 'contactX', 'contactY', 'contactZ', 'groundX', 'groundY', 'l_r','h_l',
                 'pa', 'ab', 'hit', 'swing', 'con', 'whiff','foul','z_in','z_out','count', 'count_value', 'z_left','z_right','z_high','z_low',
                 'ld','fb','gb','pu','single','double','triple','home_run','walk','hit_by_pitch','sac_fly','sac_bunt','field_out','inplay',
-                'weak','topped','under','flare','solid_contact','barrel','plus_lsa4', 'level'
+                'weak','topped','under','flare','solid_contact','barrel','plus_lsa4', 'level', 'hangtime'
                 ]]
 
         def ntype(x):
