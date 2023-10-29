@@ -3,7 +3,7 @@ import pandas as pd
 from definition import select_league, stats, period_stats, seoson_inplay_events, period_inplay_events, season_pthrows, period_pthrows, stats_viewer_pkind, swing_viewer_pkind, stats_viewer_pitchname, swing_viewer_pitchname
 from definition import season_pkind, period_pkind, season_pitchname, period_pitchname, stats_viewer, swing_viewer, event_viewer, stats_viewer_pthrows, swing_viewer_pthrows, swingmap_df, spraychart_df
 from dataframe import dataframe
-from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart, zone_spraychart_fig
+from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart, zone_spraychart_fig, season_hangtime_spraychart
 import time
 from PIL import Image
 from user import login
@@ -271,6 +271,10 @@ def show_main_page():
                 st.write("S존 기준차트")
                 zone_spraychart_fig(spraychart_dataframe)
 
+            with st.expander("타구 비행시간"):
+                spraychart_hangtime_fig = season_hangtime_spraychart(spraychart_dataframe)
+                st.plotly_chart(spraychart_hangtime_fig, layout="wide")
+            
             st.divider()
         else:
             st.write("옵션을 선택 후 실행 버튼을 눌러주세요.")
