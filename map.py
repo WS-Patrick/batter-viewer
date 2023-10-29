@@ -535,6 +535,47 @@ def season_spraychart(dataframe):
 
     return  st.plotly_chart(season_spraychart_fig, layout="wide")
 
+def season_hangtime_spraychart(dataframe):
+
+    # colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
+    #       'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
+    #       'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
+    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+
+    col_index = len(dataframe['game_year'].unique())
+
+    season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='hangtime',  facet_col='game_year', symbol="pitch_name",
+                         hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
+                        #  category_orders={"game_year": [2021,2022, 2023]},
+                         height = 580, width = col_index*500)
+    
+    for i, d in enumerate(season_spraychart_fig.data):
+        season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
+
+    season_spraychart_fig.update_yaxes(domain=[0.1, 0.97])
+
+    season_spraychart_fig.update_layout(autosize=False, margin=dict(l=50, r=50, t=50, b=50), xaxis_range=[-10,130], yaxis_range=[-10,130])
+
+    season_spraychart_fig.update_layout({'plot_bgcolor': 'rgba(255,255,255,1)', 'paper_bgcolor': 'rgba(255,255,255,1)',})
+
+    season_spraychart_fig.update_yaxes(gridcolor='rgba(255,255,255,1)')
+    season_spraychart_fig.update_xaxes(gridcolor='rgba(255,255,255,1)')
+
+    season_spraychart_fig.update_traces(marker=dict(size=20))
+
+    season_spraychart_fig.update_layout(showlegend=False)
+
+    season_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=28, y1=28, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+    season_spraychart_fig.add_shape(type="rect", x0=0, y0=0, x1=135, y1=135, line=dict(color="rgba(108,122,137,0.7)"), line_width=5, row="all", col="all")
+
+    season_spraychart_fig.add_shape(type="path", path="M 0,100 Q 120,120 100,0", line_color="rgba(108,122,137,0.7)", line_width = 5, row="all", col="all")
+
+    season_spraychart_fig.update_xaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+    season_spraychart_fig.update_yaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
+
+    return  st.plotly_chart(season_spraychart_fig, layout="wide")
+
 def season_period_spraychart(dataframe):
 
     date2 = pd.to_datetime('today')
