@@ -1,5 +1,5 @@
 ﻿team,team_tm_major,team_tm_minor,KBO_ID,TM_ID,NAME,POS,BackNum,engName,Birthday,Height,Weight,PitcherThrows,BatterSide,프로필변동,plyer_info_2022,팀변경
--,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,
+-,-,-,-,-,-,-,-,-,-,0,-,-,-,-,-,
 KT,KT_WIZ,MIN_KTW,53006,53006,강건,P,106,"Kang, Gun",20040712,183,85,Right,Right,O,X,
 KIA,KIA_TIG,MIN_KIA,52659,52659,강병우,P,15,"Kang, Byeong Woo",20031212,182,88,Left,Left,X,,
 KIA,KIA_TIG,MIN_KIA,67604,67604,강이준,P,36,"Kang, Yi Jun",19980407,190,86,Right,Right,X,,
