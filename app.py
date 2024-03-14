@@ -49,7 +49,7 @@ def show_main_page():
         st.markdown("""<style>[data-testid="stSidebar"][aria-expanded="true"] > div:first-child{width: 340px; }""", unsafe_allow_html=True,)
 
         id_dataset = pd.read_csv('./player_id_info_2023.csv')
-        id_dataset = id_dataset[['team','NAME','POS','TM_ID']]
+        id_dataset = id_dataset[['team','NAME','POS','TM_ID','Height']]
         id_dataset = id_dataset[id_dataset['POS'] != 'P']
 
         #------------------------------------------------------------------------------
@@ -75,6 +75,8 @@ def show_main_page():
 
         player_dataset = player_dataset[player_dataset['NAME'] == select_player]
         id = player_dataset.iloc[0]['TM_ID']
+
+        height = player_dataset.iloc[0]['Height']
 
         # #---------------------------------------------------------------------------------
 
@@ -106,6 +108,9 @@ def show_main_page():
                 my_bar.progress(percent_complete + 1, text=progress_text)
 
             st.caption(':gray[<본 기록관련 정보는 트랙맨이 설치되어 있지 않거나 측정이 되지 않을 경우 반영이 되지 않습니다. 실제 기록과 차이가 발생될 수 있음을 양지하여 주시기 바랍니다.>]')
+
+            top_line = height * 0.5635
+            bottom_line = height * 0.2764
             
         #----------------------------------------------------------------------------------
 
