@@ -76,7 +76,7 @@ def show_main_page():
         player_dataset = player_dataset[player_dataset['NAME'] == select_player]
         id = player_dataset.iloc[0]['TM_ID']
 
-        height = player_dataset.iloc[0]['Height']
+        height = int(player_dataset.iloc[0]['Height'])
 
         # #---------------------------------------------------------------------------------
 
@@ -113,6 +113,9 @@ def show_main_page():
             
             top_line = height * 0.5635
             bottom_line = height * 0.2764
+
+            st.write(top_line)
+            st.write(bottom_line)
             
         #----------------------------------------------------------------------------------
 
