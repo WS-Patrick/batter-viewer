@@ -69,7 +69,7 @@ def show_main_page():
 
         st.markdown("""<style>[data-testid="stSidebar"][aria-expanded="true"] > div:first-child{width: 340px; }""", unsafe_allow_html=True,)
 
-        id_dataset = pd.read_csv('./player_id_info_2023.csv')
+        id_dataset = pd.read_csv('./player_id_info_2024.csv')
         id_dataset = id_dataset[['team','NAME','POS','TM_ID']]
         id_dataset = id_dataset[id_dataset['POS'] != 'P']
 
