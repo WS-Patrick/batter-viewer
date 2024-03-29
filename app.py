@@ -281,6 +281,8 @@ def show_main_page():
                 st.write("S존 기준차트")
                 zone_spraychart_fig(spraychart_dataframe)
 
+            st.write(spraychart_dataframe)
+
             with st.expander("타구 비행시간"):
                 spraychart_hangtime_fig = season_hangtime_spraychart(spraychart_dataframe)
                 st.plotly_chart(spraychart_hangtime_fig, layout="wide")
