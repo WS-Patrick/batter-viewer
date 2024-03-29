@@ -282,6 +282,7 @@ def show_main_page():
                 zone_spraychart_fig(spraychart_dataframe)
 
             with st.expander("타구 비행시간"):
+                st.write("타구비행시간 1초미만: 살구색 / 1초 ~ 4초: 빨간색(Challenge 영역) / 4초 이상: 옅은 갈색")
                 spraychart_hangtime_fig = season_hangtime_spraychart(spraychart_dataframe)
                 st.plotly_chart(spraychart_hangtime_fig)
             
