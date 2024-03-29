@@ -287,7 +287,7 @@ def show_main_page():
 
             with st.expander("타구 비행시간"):
                 spraychart_hangtime_fig = season_hangtime_spraychart(spraychart_dataframe)
-                st.plotly_chart(spraychart_hangtime_fig, layout="wide")
+                st.plotly_chart(spraychart_hangtime_fig)
             
             st.divider()
         else:
