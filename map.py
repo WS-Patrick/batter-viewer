@@ -556,22 +556,7 @@ def season_hangtime_spraychart(dataframe):
                          height = 580, width = col_index*500)
     
     for i, d in enumerate(season_spraychart_fig.data):
-        if hasattr(d, 'name') and isinstance(d.name, str) and ', ' in d.name:
-            split_name = d.name.split(', ')
-            symbol_name = split_name[1]
-        # Check if the symbol name exists in the symbols dictionary
-            if symbol_name in symbols:
-                season_spraychart_fig.data[i].marker.symbol = symbols[symbol_name]
-            else:
-            # Handle case where symbol name doesn't exist in the symbols dictionary
-                print(f"Symbol '{symbol_name}' not found in symbols dictionary.")
-        else:
-        # Handle case where 'name' attribute doesn't exist or has incorrect format
-            print(f"Invalid name attribute for data point {i}: {d.name}")
-
-
-        
-        # season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
+        season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
 
     season_spraychart_fig.update_yaxes(domain=[0.1, 0.97])
 
