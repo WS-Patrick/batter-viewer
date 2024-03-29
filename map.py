@@ -542,8 +542,6 @@ def season_hangtime_spraychart(dataframe):
 
     col_index = len(dataframe['game_year'].unique())
 
-    dataframe['hangtime'] = dataframe['hangtime'].astype(int)
-
     season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='hangtime_type', color_discrete_map=colors, facet_col='game_year', symbol="pitch_name",
                          hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
                         #  category_orders={"game_year": [2021,2022, 2023]},
@@ -587,8 +585,8 @@ def season_hangtime_spraychart(dataframe):
     season_spraychart_fig.update_xaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
     season_spraychart_fig.update_yaxes(showline=True, linewidth=1, linecolor='rgba(108,122,137,0.9)', mirror=True)
 
-    return  st.plotly_chart(season_spraychart_fig, layout="wide")
-
+    return  season_spraychart_fig
+    
 def season_period_spraychart(dataframe):
 
     date2 = pd.to_datetime('today')
