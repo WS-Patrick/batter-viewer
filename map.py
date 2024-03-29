@@ -537,39 +537,33 @@ def season_spraychart(dataframe):
 
 def season_hangtime_spraychart(dataframe):
 
-    # colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
-    #       'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
-    #       'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
+    colors = {'shrot':'rgba(67,89,119,0.7)','long':'rgba(140,86,75,0.3)', 'challenge':'rgba(255,72,120,1)' }
     symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
     col_index = len(dataframe['game_year'].unique())
 
-    colors = [(0, 'rgba(67,89,119,0.7)'),     # hangtime <= 2: Red
-                   (1/4, 'rgba(255,72,120,1)'),   # 2 < hangtime < 5: Blue
-                   (1, 'rgba(140,86,75,0.3)')]    # hangtime >= 5: Brown
-    
     dataframe['hangtime'] = dataframe['hangtime'].astype(int)
 
-    season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='hangtime', color_discrete_map=colors, facet_col='game_year', symbol="pitch_name",
+    season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='hangtime_type', color_discrete_map=colors, facet_col='game_year', symbol="pitch_name",
                          hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
                         #  category_orders={"game_year": [2021,2022, 2023]},
                          height = 580, width = col_index*500)
     
     for i, d in enumerate(season_spraychart_fig.data):
-        if hasattr(d, 'name') and isinstance(d.name, str) and ', ' in d.name:
-            split_name = d.name.split(', ')
-            symbol_name = split_name[1]
-        # Check if the symbol name exists in the symbols dictionary
-            if symbol_name in symbols:
-                season_spraychart_fig.data[i].marker.symbol = symbols[symbol_name]
-            else:
-            # Handle case where symbol name doesn't exist in the symbols dictionary
-                print(f"Symbol '{symbol_name}' not found in symbols dictionary.")
-        else:
-        # Handle case where 'name' attribute doesn't exist or has incorrect format
-            print(f"Invalid name attribute for data point {i}: {d.name}")
+        # if hasattr(d, 'name') and isinstance(d.name, str) and ', ' in d.name:
+        #     split_name = d.name.split(', ')
+        #     symbol_name = split_name[1]
+        # # Check if the symbol name exists in the symbols dictionary
+        #     if symbol_name in symbols:
+        #         season_spraychart_fig.data[i].marker.symbol = symbols[symbol_name]
+        #     else:
+        #     # Handle case where symbol name doesn't exist in the symbols dictionary
+        #         print(f"Symbol '{symbol_name}' not found in symbols dictionary.")
+        # else:
+        # # Handle case where 'name' attribute doesn't exist or has incorrect format
+        #     print(f"Invalid name attribute for data point {i}: {d.name}")
        
-        # season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
+        season_spraychart_fig.data[i].marker.symbol = symbols[season_spraychart_fig.data[i].name.split(', ')[1]]
 
     season_spraychart_fig.update_yaxes(domain=[0.1, 0.97])
 
