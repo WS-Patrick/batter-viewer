@@ -341,7 +341,7 @@ def dataframe(level, player_id):
 
         df['hit_distance'] = df['hit_distance_sc']*0.3048
 
-        df[['batter','pitcher','groundX','groundY','game_year']] = df[['batter','pitcher','groundX', 'groundY','game_year']].apply(pd.to_numeric)
+        df[['batter','pitcher','groundX','groundY','game_year','hangtime']] = df[['batter','pitcher','groundX', 'groundY','game_year','hangtime']].apply(pd.to_numeric)
 
         conv_fac = 0.3048
         df['rel_height'] = df['release_pos_z']*conv_fac
