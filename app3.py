@@ -3,7 +3,7 @@ import pandas as pd
 from definition import select_league, stats, period_stats, seoson_inplay_events, period_inplay_events, season_pthrows, period_pthrows, stats_viewer_pkind, swing_viewer_pkind, stats_viewer_pitchname, swing_viewer_pitchname
 from definition import season_pkind, period_pkind, season_pitchname, period_pitchname, stats_viewer, swing_viewer, event_viewer, stats_viewer_pthrows, swing_viewer_pthrows, swingmap_df, spraychart_df
 from dataframe import dataframe
-from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart, factor_year_count_map, factor_year_sum_map,factor_year_sum_plate_map, swingmap_count_map, zone_spraychart_fig
+from map import select_count_option, select_sum_option, select_sum_plate_option, swingmap_count_option, season_spraychart, season_period_spraychart, factor_year_count_map, factor_year_sum_map,factor_year_sum_plate_map, swingmap_count_map, season_hangtime_spraychart, zone_spraychart_fig
 import time
 from PIL import Image
 from user import login
@@ -70,7 +70,7 @@ def show_main_page():
         st.markdown("""<style>[data-testid="stSidebar"][aria-expanded="true"] > div:first-child{width: 340px; }""", unsafe_allow_html=True,)
 
         id_dataset = pd.read_csv('./player_id_info_2024.csv')
-        id_dataset = id_dataset[['team','NAME','POS','TM_ID']]
+        id_dataset = id_dataset[['team','NAME','POS','TM_ID','Height']]
         id_dataset = id_dataset[id_dataset['POS'] != 'P']
 
         #------------------------------------------------------------------------------
@@ -90,11 +90,13 @@ def show_main_page():
         teams_list = id_dataset['team'].unique().tolist()
         select_team = st.sidebar.selectbox('팀명 선택', teams_list)
         player_dataset = id_dataset[id_dataset['team'] == select_team]
-
         player_list = player_dataset['NAME'].unique().tolist()
         select_player = st.sidebar.selectbox('선수 선택', player_list)
-
         player_id = find_id(player_dataset, select_player)
+
+        height = int(player_dataset.iloc[0]['Height'])
+        top_line = height * 0.5635
+        bottom_line = height * 0.2764
         
         option = st.sidebar.selectbox('리그 선택', ("-", "KBO(1군)", "KBO(2군)", "AAA(마이너)","KBA(아마)"))
 
@@ -623,6 +625,11 @@ def show_main_page():
                 with st.expander(f" by S Zone:  {batter_name}(최근연도)"):
                     st.write("S존 기준차트")
                     zone_spraychart_fig(spraychart_dataframe)
+
+                with st.expander( f" by 타구비행시간:  {batter_name}(최근연도)"):
+                    st.write("타구 비행시간")
+                    spraychart_hangtime_fig = season_hangtime_spraychart(spraychart_dataframe)
+                    st.plotly_chart(spraychart_hangtime_fig)
 
 
             st.divider()
