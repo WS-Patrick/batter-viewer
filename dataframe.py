@@ -450,6 +450,16 @@ def dataframe(level, player_id):
             elif x == '3-1':
                 return 'Else'
 
+        def hangtime(x):
+            if x <= 1:
+                return 'short'
+            elif x >= 4:
+                return 'long'
+            else:
+                return 'challenge'
+
+        df['hangtime_type'] = df['hangtime'].apply(lambda x: hangtime(x))
+
         df['count_value'] = df['count'].apply(lambda x: count(x))
 
         df['after_2s'] = df['count_value'].apply(lambda x: 1 if x == 'After_2S' else 0)
@@ -537,7 +547,7 @@ def dataframe(level, player_id):
                 'exit_speed(km)','launch_angle','launch_direction','hit_distance','hit_spin_rate','launch_speed_angle', 'contactX', 'contactY', 'contactZ', 'groundX', 'groundY', 'l_r','h_l',
                 'pa', 'ab', 'hit', 'swing', 'con', 'whiff','foul','z_in','z_out','count', 'count_value', 'z_left','z_right','z_high','z_low',
                 'ld','fb','gb','pu','single','double','triple','home_run','walk','hit_by_pitch','sac_fly','sac_bunt','field_out','inplay',
-                'weak','topped','under','flare','solid_contact','barrel','plus_lsa4', 'level', 'hangtime'
+                'weak','topped','under','flare','solid_contact','barrel','plus_lsa4', 'level', 'hangtime','hangtime_type'
                 ]]
 
         def ntype(x):
