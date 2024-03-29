@@ -622,7 +622,7 @@ def show_main_page():
                 spraychart_dataframe = spraychart_df(batter_raw_df)
                 season_spraychart(spraychart_dataframe)
 
-                with st.expander(f" by S Zone:  {batter_name}(최근연도)"):
+                with st.expander(f" by 스트라이크 존:  {batter_name}(최근연도)"):
                     st.write("S존 기준차트")
                     zone_spraychart_fig(spraychart_dataframe)
 
