@@ -548,6 +548,7 @@ def season_hangtime_spraychart(dataframe):
                    (2/5, 'rgba(255,72,120,1)'),   # 2 < hangtime < 5: Blue
                    (1, 'rgba(140,86,75,0.3)')]    # hangtime >= 5: Brown
     
+    dataframe['hangtime'] = dataframe['hangtime'].astype(int)
 
     season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='hangtime',  color_continuous_scale=color_scale, facet_col='game_year', symbol="pitch_name",
                          hover_name="player_name", hover_data=["rel_speed(km)","pitch_name","events","exit_velocity","description","launch_speed_angle","launch_angle",'hit_spin_rate'],
