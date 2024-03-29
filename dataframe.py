@@ -629,6 +629,8 @@ def dataframe(level, player_id):
         end22 = '2022-10-11'
         start23 = '2023-04-01'
         end23 = '2023-10-30'
+        start24 = '2024-03-23'
+        end24 = '2024-10-30'   
 
         season18 = ndf[(ndf['game_date'] >= start18) & (ndf['game_date'] <= end18)]
         season19 = ndf[(ndf['game_date'] >= start19) & (ndf['game_date'] <= end19)]
@@ -636,9 +638,9 @@ def dataframe(level, player_id):
         season21 = ndf[(ndf['game_date'] >= start21) & (ndf['game_date'] <= end21)]
         season22 = ndf[(ndf['game_date'] >= start22) & (ndf['game_date'] <= end22)]
         season23 = ndf[(ndf['game_date'] >= start23) & (ndf['game_date'] <= end23)]
+        season24 = ndf[(ndf['game_date'] >= start24) & (ndf['game_date'] <= end24)]
 
-
-        ndf = pd.concat([season18, season19, season20, season21, season22, season23], ignore_index=True)
+        ndf = pd.concat([season18, season19, season20, season21, season22, season23, season24], ignore_index=True)
 
         player_df = ndf
 
@@ -650,7 +652,6 @@ def dataframe(level, player_id):
     
     return player_df
     
-
 
 
 def base_df(player_df):
