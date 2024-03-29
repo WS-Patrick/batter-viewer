@@ -308,7 +308,7 @@ def dataframe(level, player_id):
 
     -- game year
     -- gameid Like '2020%'
-    gameid >= '2021'
+    gameid >= '2022'
 
     -- league(aaa, KoreaBaseballOrganization, npb, mlb, aa, KBO Minors)
     AND level IN ({0})
