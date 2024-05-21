@@ -60,30 +60,29 @@ def dataframe(level, player_id):
 
     -- events
     , case when playresult = 'Out' then 'field_out'
-        when playresult = 'FieldersChoice' then 'fielders_choice_out'
-        when playresult = 'Error' then 'field_error'
-        when playresult = 'Single' then 'single'
-        when playresult = 'Double' then 'double'
-        when playresult = 'Triple' then 'triple'
-        when playresult = 'HomeRun' then 'home_run'
-        when playresult = 'Sacrifice' and distance >= 30 then 'sac_fly'
-        when playresult = 'Sacrifice' and distance < 30 then 'sac_bunt'
-        when playresult = 'Undefined' and pitchcall = 'HitByPitch' then 'hit_by_pitch'
-        when playresult = 'Undefined' and korbb = 'Strikeout' then 'strikeout'
-        when playresult = 'Undefined' and korbb = 'Walk' then 'walk' else NULL END as events
+    	when playresult = 'FieldersChoice' then 'fielders_choice_out'
+    	when playresult = 'Error' then 'field_error'
+    	when playresult = 'Single' then 'single'
+    	when playresult = 'Double' then 'double'
+    	when playresult = 'Triple' then 'triple'
+    	when playresult = 'HomeRun' then 'home_run'
+    	when playresult = 'Sacrifice' and distance >= 30 then 'sac_fly'
+    	when (playresult = 'Sacrifice' and distance < 30) or (playresult = 'Sacrifice' and TaggedHitType = "Bunt") then 'sac_bunt'
+    	when playresult = 'HitByPitch' or pitchcall = 'HitByPitch'  then 'hit_by_pitch'
+    	when playresult = 'Undefined' and korbb = 'Strikeout' then 'strikeout'
+    	when playresult = 'Undefined' and korbb = 'Walk' then 'walk' else NULL END as events
 
     -- description
-    , case when pitchCall = 'FoulBall' then 'foul'
-        when pitchCall = 'BallCalled' then 'ball'
-        when pitchCall = 'BallinDirt' then 'ball'
-        when pitchCall = 'StrikeCalled' then 'called_strike'
-        when pitchCall = 'StrikeSwinging' then 'swinging_strike'
-        when pitchCall = 'InPlay' and playresult in ('Double','Single','HomeRun','Error','Triple','FieldersChoice')  and  runsscored = 0 then 'hit_into_play_no_out'
-        when pitchCall = 'InPlay' and runsscored >= 1 then 'hit_into_play_score'
-        when pitchCall = 'InPlay' and playresult in ('Out','Sacrifice') and runsscored = 0 then 'hit_into_play'
-        when pitchCall = 'HitByPitch' then 'hit_by_pitch'
-        when pitchCall = 'BallIntentional' then 'pitchout'
-        when pitchCall = 'BallIntentional' then 'pitchout' else null END AS description
+    , case when pitchCall in('FoulBall', 'FoulballFieldable', 'FoulballNotFieldable') then 'foul'
+    	when pitchCall in ('BallCalled', 'BallinDirt', 'BallAutomatic') then 'ball'
+    	when pitchCall in ('StrikeCalled', 'AutomaticStrike', 'StrikeAutomatic') then 'called_strike'
+    	when pitchCall = 'StrikeSwinging' then 'swinging_strike'
+    	when pitchCall = 'InPlay' and playresult in ('Double','Single','HomeRun','Error','Triple','FieldersChoice')  and  runsscored = 0 then 'hit_into_play_no_out'
+    	when pitchCall = 'InPlay' and runsscored >= 1 then 'hit_into_play_score'
+    	when pitchCall = 'InPlay' and playresult in ('Out','Sacrifice') and runsscored = 0 then 'hit_into_play'
+    	when pitchCall = 'HitByPitch' or playresult = 'HitByPitch'  then 'hit_by_pitch'
+    	when pitchCall = 'BallIntentional' then 'pitchout'
+     	else null END AS description
 
     -- zone
     , CASE WHEN PlateLocSide >= -0.25 AND PlateLocSide < -0.08333 AND PlateLocHeight >= 0.85 AND PlateLocHeight < 1.05 THEN 3 
@@ -120,9 +119,9 @@ def dataframe(level, player_id):
     , HomeTeam, AwayTeam
 
     -- type
-    , CASE WHEN pitchCall IN ('BallCalled','HitByPitch','BallIntentional', 'BallinDirt') THEN 'B'
-        WHEN PITCHCALL IN ('FoulBall','StrikeCalled','StrikeSwinging') THEN 'S' 
-        WHEN PITCHCALL IN ('InPlay') THEN 'X' ELSE NULL END AS 'type'
+    , CASE WHEN pitchCall IN ('BallinDirt','BallCalled','HitByPitch','BallIntentional','BallAutomatic') THEN 'B'
+    	WHEN PITCHCALL IN ('StrikeCalled','FoulBall','StrikeSwinging','StrikeAutomatic','FoulBallNotFieldable','FoulBallFieldable') THEN 'S' 
+    	WHEN PITCHCALL IN ('InPlay') THEN 'X' ELSE NULL END AS 'type'
 
     -- bb_type
     -- , CASE WHEN pitchcall='inplay' AND exitspeed >= 1 and angle < 10 then 'Groundball'
@@ -232,12 +231,14 @@ def dataframe(level, player_id):
 
     -- pitch name
     , CASE WHEN PITKIND = 'FF' THEN '4-Seam Fastball'
-        WHEN PITKIND = 'CH' THEN 'Changeup'
-        WHEN PITKIND = 'SL' THEN 'Slider'
-        WHEN PITKIND = 'CU' THEN 'Curveball'
-        WHEN PITKIND = 'FS' THEN 'Split-Finger'
-        WHEN PITKIND IN ('FT','SI') THEN '2-Seam Fastball'
-        WHEN PITKIND = 'FC' THEN 'Cutter' ELSE PITKIND END AS pitch_name
+    	WHEN PITKIND = 'CH' THEN 'Changeup'
+    	WHEN PITKIND = 'SL' THEN 'Slider'
+    	WHEN PITKIND = 'CU' THEN 'Curveball'
+    	WHEN PITKIND = 'ST' THEN 'Sweeper'
+    	WHEN PITKIND = 'FS' THEN 'Split-Finger'
+    	WHEN PITKIND IN ('FT','SI') THEN '2-Seam Fastball'
+    	WHEN PITKIND = 'FC' THEN 'Cutter' ELSE PITKIND END AS pitch_name
+     
     -- , PlateLocSide, PlateLocHeight
 
     , home_score_cn
@@ -264,29 +265,29 @@ def dataframe(level, player_id):
     -- hangtime
     , HangTime
 
-    -- pitkind
-        FROM 
-            
-            (
-            SELECT a.*, substring(GameID ,1,4) as SEASON
-            , CASE WHEN pit_kind_cd = '31' THEN 'FF'
-            WHEN pit_kind_cd = '32' THEN 'CU'
-            WHEN pit_kind_cd = '33' THEN 'SL'
-            WHEN pit_kind_cd = '34' THEN 'CH'
-            WHEN pit_kind_cd = '35' THEN 'FS'
-            WHEN pit_kind_cd = '36' THEN 'SI'
-            WHEN pit_kind_cd = '37' THEN 'FT'
-            WHEN pit_kind_cd = '38' THEN 'FC'
-            WHEN PIT_KIND_CD IS NULL and (AUTOPITCHTYPE = 'Fastball' OR AUTOPITCHTYPE = 'Four-Seam')  then 'FF'
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Sinker' then 'SI' 
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Curveball' then 'CU' 
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Slider' then 'SL'
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Changeup' then 'CH'
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Splitter' then 'FS'
-            WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Cutter' then 'FC'
-            
-            WHEN PIT_KIND_CD IS NULL THEN AUTOPITCHTYPE 
-            ELSE 'OT' END  AS PITKIND
+     -- pitkind
+    	FROM 
+    		
+    		(
+    		SELECT a.*, substring(GameID ,1,4) as SEASON
+    		, CASE WHEN pit_kind_cd = '31' THEN 'FF'
+    		WHEN pit_kind_cd = '32' THEN 'CU'
+    		WHEN pit_kind_cd = '33' THEN 'SL'
+    		WHEN pit_kind_cd = '34' THEN 'CH'
+    		WHEN pit_kind_cd = '35' THEN 'FS'
+    		WHEN pit_kind_cd = '36' THEN 'SI'
+    		WHEN pit_kind_cd = '37' THEN 'FT'
+    		WHEN pit_kind_cd = '38' THEN 'FC'
+      		WHEN pit_kind_cd = '131' THEN 'ST'
+      		WHEN PIT_KIND_CD IS NULL and (AUTOPITCHTYPE = 'Fastball' OR AUTOPITCHTYPE = 'Four-Seam')  then 'FF'
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Sinker' then 'SI' 
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Curveball' then 'CU' 
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Slider' then 'SL'
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Changeup' then 'CH'
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Splitter' then 'FS'
+    		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Cutter' then 'FC'
+      		WHEN PIT_KIND_CD IS NULL and AUTOPITCHTYPE = 'Sweeper' then 'ST'
+    		ELSE 'OT' END  AS PITKIND
             
             , PITCHER as pitname, BATTER as batname 
             , CASE WHEN PlateLocSide >= -0.25 AND  PlateLocSide < 0.25 AND PlateLocHeight >= 0.45 AND PlateLocHeight < 1.05 THEN 'IN' ELSE 'OUT' END AS 'ZONEIN'
@@ -402,23 +403,25 @@ def dataframe(level, player_id):
         df['p_type'] = df['pitcher'].apply(lambda x: 'S' if x in y else 'R')
 
         def pkind(x):
-
-            if x == '4-Seam Fastball':
-                return 'Fastball'
-            elif x == '2-Seam Fastball':
-                return 'Fastball'
-            elif x == 'Cutter':
-                return 'Fastball'
-            elif x == 'Slider':
-                return 'Breaking'
-            elif x == 'Curveball':
-                return 'Breaking'
-            elif x == 'Changeup':
-                return 'Off_Speed'
-            elif x == 'Split-Finger':
-                return 'Off_Speed'
-            else:
-                return 'OT'
+        
+          if x == '4-Seam Fastball':
+            return 'Fastball'
+          elif x == '2-Seam Fastball':
+            return 'Fastball'
+          elif x == 'Cutter':
+            return 'Fastball'
+          elif x == 'Slider':
+            return 'Breaking'
+          elif x == 'Curveball':
+            return 'Breaking'
+          elif x == 'Sweeper':
+            return 'Breaking'
+          elif x == 'Changeup':
+            return 'Off_Speed'
+          elif x == 'Split-Finger':
+            return 'Off_Speed'
+          else:
+            return 'OT'
 
 
         df['p_kind'] = df['pitch_name'].apply(lambda x: pkind(x))
