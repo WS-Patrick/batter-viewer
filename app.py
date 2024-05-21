@@ -109,13 +109,13 @@ def show_main_page():
 
             st.caption(':gray[<본 기록관련 정보는 트랙맨이 설치되어 있지 않거나 측정이 되지 않을 경우 반영이 되지 않습니다. 실제 기록과 차이가 발생될 수 있음을 양지하여 주시기 바랍니다.>]')
 
-            st.write(height)
+            # st.write(height)
             
-            top_line = height * 0.5635
-            bottom_line = height * 0.2764
+            # top_line = height * 0.5635
+            # bottom_line = height * 0.2764
 
-            st.write(top_line)
-            st.write(bottom_line)
+            # st.write(top_line)
+            # st.write(bottom_line)
 
         #----------------------------------------------------------------------------------
 
