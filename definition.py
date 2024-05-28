@@ -233,7 +233,7 @@ def season_pitchname(player_df):
     season_pitchname_df = stats_df(merged_base_df)
 
     season_pitchname_df = season_pitchname_df.reindex([2024, 2023, 2022], level='game_year')
-    season_pitchname_df = season_pitchname_df.reindex(['4-Seam Fastball','2-Seam Fastball','Cutter','Slider','Curveball','Changeup','Split-Finger'], level='pitch_name')
+    season_pitchname_df = season_pitchname_df.reindex(['4-Seam Fastball','2-Seam Fastball','Cutter','Slider','Curveball','Sweeper','Changeup','Split-Finger'], level='pitch_name')
 
     season_pitchname_df = season_pitchname_df.reset_index()
     season_pitchname_df = season_pitchname_df.astype({'game_year':'str'})
@@ -254,7 +254,7 @@ def period_pitchname(player_df):
         merged_base_df = pivot_base_df(sdf,pivot_index)
         period_pitchname_df = stats_df(merged_base_df)
 
-        period_pitchname_df = period_pitchname_df.reindex(['4-Seam Fastball','2-Seam Fastball','Cutter','Slider','Curveball','Changeup','Split-Finger'], level='pitch_name')
+        period_pitchname_df = period_pitchname_df.reindex(['4-Seam Fastball','2-Seam Fastball','Cutter','Slider','Curveball','Sweeper','Changeup','Split-Finger'], level='pitch_name')
         
         period_pitchname_df=period_pitchname_df.rename(index={2024:'2 Weeks'})
         period_pitchname_df = period_pitchname_df.reset_index()
