@@ -232,7 +232,7 @@ def swingmap_period_symbol_map(dataframe):
     if len(dataframe) > 0:
 
         colors = {'called_strike':'rgba(24,85,144,0.6)', 'whiff':'rgba(244,247,143,0.9)', 'ball': 'rgba(108,122,137,0.7)', 'foul': 'rgba(241,106,227,0.5)', 'hit': 'rgba(255,105,97,1)', 'out': 'rgba(140,86,75,0.6)'}
-        symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+        symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Sweeper':'cross', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
         swingmap_period_symbol_map_fig = px.scatter(dataframe, x='plate_x', y='plate_z', color='swingmap', symbol='pitch_name', facet_col = 'swingmap',
                                                     color_discrete_map=colors,
@@ -498,7 +498,7 @@ def season_spraychart(dataframe):
     colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
           'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
           'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
-    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Sweeper':'cross', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
     col_index = len(dataframe['game_year'].unique())
 
@@ -538,7 +538,7 @@ def season_spraychart(dataframe):
 def season_hangtime_spraychart(dataframe):
 
     colors = {'shrot':'rgba(67,89,119,0.7)','long':'rgba(140,86,75,0.3)', 'challenge':'rgba(255,72,120,1)' }
-    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Sweeper': 'cross', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
     col_index = len(dataframe['game_year'].unique())
 
@@ -586,7 +586,7 @@ def season_period_spraychart(dataframe):
         colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
             'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
             'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
-        symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+        symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up','Sweeper': 'cross', 'Changeup': 'diamond', 'Split-Finger':'square'}
 
         season_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='events',  facet_col='game_year', symbol="pitch_name",
                             color_discrete_map=colors,
@@ -638,7 +638,7 @@ def season_zone_spraychart(dataframe, zone):
     colors = {'field_out':'rgba(140,86,75,0.3)','fielders_choice_out':'rgba(140,86,75,0.3)', 'field_error':'rgba(140,86,75,0.3)', 'sac_fly':'rgba(140,86,75,0.3)', 
           'force_out':'rgba(140,86,75,0.3)', 'double_play':'rgba(140,86,75,0.3)', 'grounded_into_double_play':'rgba(140,86,75,0.3)',
           'home_run':'rgba(255,72,120,1)', 'triple':'rgba(255,72,120,1)', 'double':'rgba(255,72,120,1)', 'single':'rgba(67,89,119,0.7)' }
-    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Changeup': 'diamond', 'Split-Finger':'square'}
+    symbols = {'4-Seam Fastball':'circle', '2-Seam Fastball':'triangle-down', 'Cutter': 'triangle-se', 'Slider': 'triangle-right', 'Curveball': 'triangle-up', 'Sweeper': 'cross','Changeup': 'diamond', 'Split-Finger':'square'}
 
     season_zone_spraychart_fig = px.scatter(dataframe, x='groundX', y='groundY', color='events',  facet_col='new_zone', facet_row='new_zone', symbol="pitch_name",
                          color_discrete_map=colors,
