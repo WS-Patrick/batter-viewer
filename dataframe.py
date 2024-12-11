@@ -21,7 +21,7 @@ import pymysql
 
 def dataframe(level, player_id):
 
-    db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
+    # db = pymysql.connect(host='14.49.30.59', port = 33067, user = 'ktwiz', passwd = 'ktwiz1234!#', db = 'ktwiz', charset='utf8', autocommit=True)
 
     db.ping ()
   
